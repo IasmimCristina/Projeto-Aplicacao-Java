@@ -19,6 +19,21 @@ public class TelaInicial  implements ITelaInicial {
         this.cliente = cliente;
     }
 
+    @Override
+    public Cliente cadastrar(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String cep) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void entrar(String email, String senha) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void recuperarConta() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
    
 
     
