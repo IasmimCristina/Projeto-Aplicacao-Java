@@ -10,7 +10,7 @@ package unifacs.model;
  */
 public interface ICliente {
 
-    void fazerPedido(Pedido pedido);
+   // void fazerPedido(Pedido pedido);
     void modificarConta(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf);//Quase todos os atributos.
     void excluirConta();
     void configurarPagamento(String pix, String cartaoCredito, String cartaoDebito);

@@ -16,12 +16,13 @@ public class Cliente implements ICliente {
     String email;
     String senha;
     String cpf;
+    String telefone;
     //Não obrigatórios:
     String pix;
     String cartaoCredito;
     String cartaoDebito;
     //Local de entrega?
-    LinkedList<Pedido> pedidosCliente;
+    //LinkedList<Pedido> pedidosCliente;
     
     
     
