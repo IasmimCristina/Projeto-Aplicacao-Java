@@ -17,6 +17,7 @@ public interface IPedido {
     void deletarPedido(); //É preciso criar uma nova instancia somente.
     void aplicarDescontos(); //Talvez retorne double.
     void salvarDataPedido();
+    void validarIDPedido();
     
     
 }

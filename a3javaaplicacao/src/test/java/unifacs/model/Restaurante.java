@@ -9,7 +9,35 @@ package unifacs.model;
  * @author YellowRed
  */
 public abstract class Restaurante {
-    String nome;
-    String tipoRefeicao;
+    protected String nome;
+    protected String descricaoRestaurante;
+    
+    
+    //Talvez mude para protected.
+    public void mostrarNome(){
+        
+    }
+    public void mostrarDescricao(){
+        
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricaoRestaurante() {
+        return descricaoRestaurante;
+    }
+
+    public void setDescricaoRestaurante(String descricaoRestaurante) {
+        this.descricaoRestaurante = descricaoRestaurante;
+    }
+    
+    
+    
     
 }

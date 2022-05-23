@@ -13,7 +13,7 @@ public class TelaInicial implements  ITelaInicial{
     private final String codigoSenha;
 
     public TelaInicial(Cliente cliente) {
-        this.codigoSenha = "8654ABCD";
+        this.codigoSenha = ("8654ABCD");
         this.cliente = cliente;
     }
     

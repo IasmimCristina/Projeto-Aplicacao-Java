@@ -14,6 +14,16 @@ package unifacs.model;
 public class Principal {
     public static void main(String[] args) {
         
+       
+        
+        System.out.println("Olá...");
+        //System.out.println(exemplo.getCardapioCafeDaManha());
+        //System.out.println("Teste!!"); //Primeiro teste e segundo teste.
+        //RestauranteBr exemplo = new RestauranteBr();
+        RestauranteInternacional exemploInt = new RestauranteInternacional();
+        System.out.println("Exemplo!");
+       
+        
         
     }
     

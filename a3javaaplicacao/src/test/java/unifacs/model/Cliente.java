@@ -49,6 +49,19 @@ public class Cliente implements ICliente {
         this.pedidosCliente = pedidosCliente;
     }
     
+    
+    //Não contém o cartão de crédito.
+    public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone,  LinkedList<Pedido> pedidosCliente,String cartaoDebito) {
+        this.nomeCompleto = nomeCompleto;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.numTelefone = numTelefone;        
+        this.pedidosCliente = pedidosCliente;
+        this.cartaoDebito = cartaoDebito;
+    }
+    
     //Não contém o cartão de débito:
     public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone, String cartaoCredito, LinkedList<Pedido> pedidosCliente) {
         this.nomeCompleto = nomeCompleto;
