@@ -65,13 +65,13 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 500));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(102, 51, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(102, 51, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("X");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -107,7 +107,7 @@ public class TelaCadastrar extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel5.setBackground(new java.awt.Color(102, 51, 0));
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(450, 449));
 
@@ -122,9 +122,9 @@ public class TelaCadastrar extends javax.swing.JFrame {
             .addGap(0, 493, Short.MAX_VALUE)
         );
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setBackground(new java.awt.Color(102, 51, 0));
         jButton3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Voltar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -137,9 +137,9 @@ public class TelaCadastrar extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setBackground(new java.awt.Color(102, 51, 0));
         jButton4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Cadastrar-se");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -153,8 +153,8 @@ public class TelaCadastrar extends javax.swing.JFrame {
         });
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados pessoais"));
-        jPanel7.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados pessoais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 0, 0))); // NOI18N
+        jPanel7.setForeground(new java.awt.Color(51, 0, 0));
 
         jFormattedTextField1.setBackground(new java.awt.Color(255, 255, 255));
         try {
@@ -217,7 +217,7 @@ public class TelaCadastrar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel8.setBackground(new java.awt.Color(102, 51, 0));
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(450, 449));
 
@@ -233,8 +233,8 @@ public class TelaCadastrar extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da conta"));
-        jPanel9.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da conta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 0, 0))); // NOI18N
+        jPanel9.setForeground(new java.awt.Color(51, 0, 0));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados financeiros *Podem ser definidos depois"));

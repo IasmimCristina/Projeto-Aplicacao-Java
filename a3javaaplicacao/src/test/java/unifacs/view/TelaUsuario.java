@@ -10,12 +10,19 @@ package unifacs.view;
  */
 public class TelaUsuario extends javax.swing.JFrame {
 
+    //Telas internas da aplicação.
+    JITelaVisualizarConta telaVisualizarConta = new JITelaVisualizarConta();
+    JIFazerPedido telaFazerPedido = new JIFazerPedido();
+    JITelaPedidoRestaurante1 telaPedidoRestaurante1 = new JITelaPedidoRestaurante1();
+    // Ganhar uma variável que dirá que o restaurante 1 deve abrir a tela Fazer pedido deve ser fechada.
+    JITelaPagamento telaPagamento = new JITelaPagamento();
     /**
      * Creates new form TelaUsuario
      */
     public TelaUsuario() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -209,17 +216,18 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        //Aqui
-        JITelaVisualizarConta telaVisualizarConta = new JITelaVisualizarConta();
+        //Aqui        
         jDesktopPane1.add(telaVisualizarConta);
         telaVisualizarConta.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JIFazerPedido telaFazerPedido = new JIFazerPedido();
+        
         jDesktopPane1.add(telaFazerPedido);
         telaFazerPedido.setVisible(true);
+        //Crie uma condição que faça com que os outras  JI apareçam.
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -43,20 +43,19 @@ public class TelaEntrar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Entrar");
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 500));
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 500));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(102, 51, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(102, 51, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("X");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -92,9 +91,9 @@ public class TelaEntrar extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(102, 51, 0));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Entrar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -107,7 +106,7 @@ public class TelaEntrar extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel4.setBackground(new java.awt.Color(102, 51, 0));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -121,7 +120,7 @@ public class TelaEntrar extends javax.swing.JFrame {
             .addGap(0, 21, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel5.setBackground(new java.awt.Color(102, 51, 0));
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(450, 449));
 
@@ -164,9 +163,9 @@ public class TelaEntrar extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Email:");
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setBackground(new java.awt.Color(102, 51, 0));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Voltar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -181,7 +180,7 @@ public class TelaEntrar extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Trebuchet MS", 3, 10)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(102, 102, 102));
+        jButton3.setForeground(new java.awt.Color(255, 153, 0));
         jButton3.setText("Esqueceu a senha?");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton3.setBorderPainted(false);

@@ -37,14 +37,13 @@ public class TelaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Início");
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(102, 51, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(40, 30));
@@ -88,9 +87,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGap(0, 120, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(102, 51, 0));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Entrar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -103,10 +102,10 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setBackground(new java.awt.Color(102, 51, 0));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Cadastrar");
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Cadastrar-se");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setMaximumSize(new java.awt.Dimension(80, 30));
@@ -118,7 +117,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel4.setBackground(new java.awt.Color(102, 51, 0));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

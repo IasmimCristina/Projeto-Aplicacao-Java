@@ -4,6 +4,10 @@
  */
 package unifacs.view;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author YellowRed
@@ -93,6 +97,11 @@ public class JIFazerPedido extends javax.swing.JInternalFrame {
         jButton1.setForeground(new java.awt.Color(102, 51, 0));
         jButton1.setText("Ver cardápio");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 102, 0), 3));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -217,6 +226,16 @@ public class JIFazerPedido extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        /*try {
+           this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(JIFazerPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        // Fazer a aplicação ganhar uma variável que dita qual é o restaurante.
+        //E o outro abre!! 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,12 +8,12 @@ package unifacs.view;
  *
  * @author YellowRed
  */
-public class JITelaPedidoRestaurante1 extends javax.swing.JInternalFrame {
+public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form JITelaPedidoRestaurante1
      */
-    public JITelaPedidoRestaurante1() {
+    public JITelaPedidoRestaurante2() {
         initComponents();
     }
 
@@ -43,7 +43,7 @@ public class JITelaPedidoRestaurante1 extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
-        setTitle("Pedido - Restaurante 1");
+        setTitle("Pedido - Restaurante 2");
 
         jPanel1.setBackground(new java.awt.Color(102, 51, 0));
 
@@ -76,7 +76,7 @@ public class JITelaPedidoRestaurante1 extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Restaurante 1");
+        jLabel1.setText("Restaurante 2");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -199,7 +199,7 @@ public class JITelaPedidoRestaurante1 extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton5)
                             .addComponent(jButton4)
                             .addComponent(jButton6))
