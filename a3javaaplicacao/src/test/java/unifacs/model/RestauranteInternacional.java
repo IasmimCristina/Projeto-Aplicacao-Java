@@ -20,11 +20,11 @@ public class RestauranteInternacional extends Restaurante {
 
     public RestauranteInternacional() {
         //Cardápio - Pizzaria
-        refeicao = new Refeicao(255, "Pizza de 4 queijos e pepperoni", "Pequeno", 15d);
+        refeicao = new Refeicao(55, "Pizza de 4 queijos com pepperoni", "Pequeno", 15d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(155, "Pizza de 4 queijos e pepperoni", "Médio", 30d);
+        refeicao = new Refeicao(155, "Pizza de 4 queijos com pepperoni", "Médio", 30d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza de 4 queijos e pepperoni", "Grande", 45d);
+        refeicao = new Refeicao(55, "Pizza de 4 queijos com pepperoni", "Grande", 45d);
         cardapioPizzas.add(refeicao);
         refeicao = new Refeicao(155, "Pizza de salame picante", "Pequeno", 13.5d);
         cardapioPizzas.add(refeicao);
@@ -32,38 +32,69 @@ public class RestauranteInternacional extends Restaurante {
         cardapioPizzas.add(refeicao);
         refeicao = new Refeicao(255, "Pizza de calabresa com cebola", "Médio", 45d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza Marguerita", "Médio", 25d);
+        refeicao = new Refeicao(155, "Pizza Marguerita", "Médio", 25d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza Marguerita", "Grande", 45d);
+        refeicao = new Refeicao(155, "Pizza Marguerita", "Grande", 45d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza de churrasco", "Grande", 45d);
+        refeicao = new Refeicao(200, "Pizza de churrasco", "Grande", 45d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza de churrasco", "Médio", 30d);
+        refeicao = new Refeicao(155, "Pizza de churrasco", "Médio", 30d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza de frango com catupiry", "Médio", 25d);
+        refeicao = new Refeicao(155, "Pizza de frango com catupiry", "Médio", 25d);
         cardapioPizzas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza de frango com catupiry", "Grande", 40d);
+        refeicao = new Refeicao(155, "Pizza de frango com catupiry", "Grande", 40d);
         cardapioPizzas.add(refeicao);
         
         //Cardápio - Bebidas
-        refeicao = new Refeicao(255, "Garrafa de suco de uva", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa de suco de uva", "Grande", 4.5d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Garrafa de suco de morango", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa de suco de morango", "Grande", 4.5d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Garrafa de suco de laranja", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa de suco de laranja", "Grande", 4.5d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Garrafa de suco de limão", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa de suco de limão", "Médio", 4d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Garrafa de suco de manga", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa de suco de manga", "Médio", 4d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Garrafa de refrigerante de uva", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa de refrigerante de uva", "Grande", 45d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Garrafa de refrigerante de limão", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa de refrigerante de limão", "Grande", 4.5d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Garrafa Coca Cola", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa Coca-Cola", "Grande", 5d);
         cardapioBebidas.add(refeicao);
-        refeicao = new Refeicao(255, "Pizza de churrasco", "Grande", 45d);
+        refeicao = new Refeicao(55, "Garrafa Pepsi", "Grande", 4.5d);
         cardapioBebidas.add(refeicao);
+        
+        
+        //Cardápio - Almoço e jantar
+        refeicao = new Refeicao(55, "Porção de paella", "Grande", 70d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Torta de carne", "Médio", 65d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de yakisoba de carne", "Grande", 35d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de yakisoba de frango", "Grande", 35d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de yakisoba de vegetais", "Médio", 25d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção mista de churrasco", "Grande", 45d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Tigela de lámen", "Grande", 35d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de espaghetti alla carbonara", "Grande", 30d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de ratatouille", "Grande", 15d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de sashimi e tempurá", "Médio", 30d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de sushi com hot roll", "Grande", 55d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de sushi com hot roll", "Médio", 30d);
+        cardapioAlmocoJantar.add(refeicao);
+        refeicao = new Refeicao(55, "Porção de sushi com hot roll", "Pequeno", 15d);
+        cardapioAlmocoJantar.add(refeicao);
+        
+        
     }
 
     public double getDesconto01() {
