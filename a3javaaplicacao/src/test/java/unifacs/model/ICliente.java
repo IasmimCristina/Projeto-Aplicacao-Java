@@ -9,11 +9,12 @@ package unifacs.model;
  * @author YellowRed
  */
 public interface ICliente {
+    //Métodos.
 
-   // void fazerPedido(Pedido pedido);
-    void modificarConta(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf);//Quase todos os atributos.
+    Pedido fazerPedido(Pedido pedido);
+    void modificarConta(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone);//Quase todos os atributos. Várias funções?
     void excluirConta();
-    void configurarPagamento(String pix, String cartaoCredito, String cartaoDebito);
+    void configurarPagamento(String cartaoCredito, String cartaoDebito);
     
 
 }

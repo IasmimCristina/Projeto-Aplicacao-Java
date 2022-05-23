@@ -59,7 +59,7 @@ public class JITelaVisualizarConta extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(102, 51, 0));
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setTitle("Minha conta");
         setMaximumSize(new java.awt.Dimension(1100, 550));
@@ -68,7 +68,7 @@ public class JITelaVisualizarConta extends javax.swing.JInternalFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados pessoais"));
-        jPanel7.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel7.setForeground(new java.awt.Color(102, 51, 0));
         jPanel7.setPreferredSize(new java.awt.Dimension(850, 300));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
