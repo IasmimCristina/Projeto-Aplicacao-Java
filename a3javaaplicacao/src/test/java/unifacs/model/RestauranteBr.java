@@ -22,8 +22,8 @@ public class RestauranteBr extends Restaurante {
     private ArrayList<Refeicao> cardapioBebidasCafeDaManha = new ArrayList<>();
     private  ArrayList<Refeicao> cardapioDoces = new ArrayList<>();
     private  ArrayList<Refeicao> cardapioSalgados = new ArrayList<>();
-    private double desconto01; //Já recebem algo.
-    private double desconto02;
+    private double descontoComboCafe; // comida 4 bebida 2, comida 10 bebida 5, comida 3 bebida 1 = 10%
+    private double descontoFesta; // 40+ doces, 45+ salgados, 35 doces 35 salgados, 25 doces 25 salgados 5 bebidas(grandes) = 25%
 
 
 
@@ -80,6 +80,8 @@ public class RestauranteBr extends Restaurante {
         refeicao = new Refeicao(55, "Esfirra de salame", "Grande", 6.8d);        
         cardapioCafeDaManha.add(refeicao);
         refeicao = new Refeicao(55, "Esfirra de carne", "Grande", 6.8d);
+        cardapioCafeDaManha.add(refeicao);
+        refeicao = new Refeicao(35, "Tigela de salada de frutas vermelhas", "Grande", 12.5d);
         cardapioCafeDaManha.add(refeicao);
         
         //Cárdapio - Café da manhã - Bebidas
@@ -174,6 +176,8 @@ public class RestauranteBr extends Restaurante {
 
 
     }
+    
+    
 
     public Refeicao getRefeicao() {
         return refeicao;

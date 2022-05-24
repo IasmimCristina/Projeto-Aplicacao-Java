@@ -11,13 +11,17 @@ package unifacs.model;
 public abstract class Restaurante {
     protected String nome;
     protected String descricaoRestaurante;
-    
+    protected String descricaoDesconto;
     
     //Talvez mude para protected.
     public void mostrarNome(){
         
     }
     public void mostrarDescricao(){
+        
+    }
+    
+    public void mostrarDescricaoDesconto(){
         
     }
 
@@ -35,6 +39,14 @@ public abstract class Restaurante {
 
     public void setDescricaoRestaurante(String descricaoRestaurante) {
         this.descricaoRestaurante = descricaoRestaurante;
+    }
+
+    public String getDescricaoDesconto() {
+        return descricaoDesconto;
+    }
+
+    public void setDescricaoDesconto(String descricaoDesconto) {
+        this.descricaoDesconto = descricaoDesconto;
     }
     
     

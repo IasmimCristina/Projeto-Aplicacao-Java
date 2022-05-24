@@ -21,6 +21,7 @@ public class Pedido implements IPedido  {
     private int idPedido;//Identificador específico de cada pedido feito na aplicação.
     private String estado;
     ArrayList<Refeicao> produtosEscolhidos = new ArrayList<>(); //Dois construtores: com quantidade disponivel e sem ela.
+    
     RestauranteBr restauranteBr; //é possível usar os métodos de um objeto como atributo.
     RestauranteInternacional restauranteInternacional;
     private double precoTotalPedido;

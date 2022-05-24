@@ -16,7 +16,8 @@ public class RestauranteInternacional extends Restaurante {
     private  ArrayList<Refeicao> cardapioAlmocoJantar = new ArrayList<>();
     private  ArrayList<Refeicao> cardapioPizzas = new ArrayList<>();
     private  ArrayList<Refeicao> cardapioBebidas = new ArrayList<>();
-    private double desconto01; //Já recebe algo
+    private double descontoQtdPizzas; //Já recebe algo
+    //3 pizzas médias iguais, 4 pizzas grandes, 4 pizzas pequenas, 2 pizzas grandes, 2 pissas pequenas = 35%
 
     public RestauranteInternacional() {
         //Cardápio - Pizzaria
@@ -97,14 +98,48 @@ public class RestauranteInternacional extends Restaurante {
         
     }
 
-    public double getDesconto01() {
-        return desconto01;
+    public double getDescontoQtdPizzas() {
+        return descontoQtdPizzas;
     }
 
-    public void setDesconto01(double desconto01) {
-        this.desconto01 = desconto01;
+    public void setDescontoQtdPizzas(double descontoQtdPizzas) {
+        this.descontoQtdPizzas = descontoQtdPizzas;
     }
 
+    public Refeicao getRefeicao() {
+        return refeicao;
+    }
+
+    public void setRefeicao(Refeicao refeicao) {
+        this.refeicao = refeicao;
+    }
+
+    public ArrayList<Refeicao> getCardapioAlmocoJantar() {
+        return cardapioAlmocoJantar;
+    }
+
+    public void setCardapioAlmocoJantar(ArrayList<Refeicao> cardapioAlmocoJantar) {
+        this.cardapioAlmocoJantar = cardapioAlmocoJantar;
+    }
+
+    public ArrayList<Refeicao> getCardapioPizzas() {
+        return cardapioPizzas;
+    }
+
+    public void setCardapioPizzas(ArrayList<Refeicao> cardapioPizzas) {
+        this.cardapioPizzas = cardapioPizzas;
+    }
+
+    public ArrayList<Refeicao> getCardapioBebidas() {
+        return cardapioBebidas;
+    }
+
+    public void setCardapioBebidas(ArrayList<Refeicao> cardapioBebidas) {
+        this.cardapioBebidas = cardapioBebidas;
+    }
+
+   
+    
     public String getNome() {
         return nome;
     }
