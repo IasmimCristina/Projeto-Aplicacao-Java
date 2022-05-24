@@ -27,11 +27,11 @@ public class Pedido implements IPedido  {
     private double precoTotalPedido;
     private double totalDescontos; //Pois poderá ocorrer a soma de descontos.
 
-    public Pedido(Cliente cliente) {
+    public Pedido(Cliente cliente) { //Valores iniciais, irão mudar conforme o pedido se desenvolva. 
         this.cliente = cliente; 
         this.idGerador = new Random();
         this.dataPedido = LocalDate.now();
-        this.idPedido = idGerador.nextInt(1000); //Valor inicial sem a vlaidação.
+        this.idPedido = idGerador.nextInt(1000); //Valor inicial sem a valiidação.
         this.estado = ("Em configuração..."); //Pode mudar.
         this.precoTotalPedido = 0d;
         

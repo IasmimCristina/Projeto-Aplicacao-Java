@@ -4,16 +4,16 @@
  */
 package unifacs.model;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  *
  * @author YellowRed
  */
 public class Pagamento extends Pedido implements IPagamento {
-    
-    
-    
-    
-//Pegar cartão cadastrado, como?
+    //Apague o cache!
+
     @Override
     public void calcularParcelas() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -28,7 +28,45 @@ public class Pagamento extends Pedido implements IPagamento {
     public void cancelarPedidoPagamento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
-    
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Random getIdGerador() {
+        return idGerador;
+    }
+
+    public void setIdGerador(Random idGerador) {
+        this.idGerador = idGerador;
+    }
+
+    public ArrayList<Refeicao> getProdutosEscolhidos() {
+        return produtosEscolhidos;
+    }
+
+    public void setProdutosEscolhidos(ArrayList<Refeicao> produtosEscolhidos) {
+        this.produtosEscolhidos = produtosEscolhidos;
+    }
+
+    public RestauranteBr getRestauranteBr() {
+        return restauranteBr;
+    }
+
+    public void setRestauranteBr(RestauranteBr restauranteBr) {
+        this.restauranteBr = restauranteBr;
+    }
+
+    public RestauranteInternacional getRestauranteInternacional() {
+        return restauranteInternacional;
+    }
+
+    public void setRestauranteInternacional(RestauranteInternacional restauranteInternacional) {
+        this.restauranteInternacional = restauranteInternacional;
+    }    
 }
+        
