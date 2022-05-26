@@ -10,7 +10,7 @@ package unifacs.model;
  */
 public interface IPagamento  {
     void calcularParcelas(); //Para pagamento por cartão de crédito.
-    void fazerPagamento();
+    void efetuarPagamento();
     void cancelarPedidoPagamento();
     
     

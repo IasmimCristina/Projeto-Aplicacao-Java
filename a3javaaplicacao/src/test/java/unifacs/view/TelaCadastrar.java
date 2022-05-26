@@ -4,17 +4,25 @@
  */
 package unifacs.view;
 
+import unifacs.controller.TelasIniciaisController;
+
 /**
  *
  * @author YellowRed
  */
 public class TelaCadastrar extends javax.swing.JFrame {
+    private final TelaInicial viewInicial;
+    private final TelaUsuario viewUsuario;
+    private final TelasIniciaisController controller;
 
     /**
      * Creates new form TelaInicial
      */
     public TelaCadastrar() {
         initComponents();
+        this.viewInicial = new TelaInicial();
+        this.viewUsuario = new TelaUsuario();
+        this.controller = new TelasIniciaisController(viewInicial, this, viewUsuario);
     }
 
     /**
@@ -31,8 +39,8 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jbVoltarCadastrar = new javax.swing.JButton();
+        jbCadastrarSe = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jTextField1 = new javax.swing.JTextField();
@@ -122,33 +130,33 @@ public class TelaCadastrar extends javax.swing.JFrame {
             .addGap(0, 493, Short.MAX_VALUE)
         );
 
-        jButton3.setBackground(new java.awt.Color(102, 51, 0));
-        jButton3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Voltar");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setMaximumSize(new java.awt.Dimension(80, 30));
-        jButton3.setMinimumSize(new java.awt.Dimension(80, 30));
-        jButton3.setPreferredSize(new java.awt.Dimension(110, 20));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbVoltarCadastrar.setBackground(new java.awt.Color(102, 51, 0));
+        jbVoltarCadastrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jbVoltarCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        jbVoltarCadastrar.setText("Voltar");
+        jbVoltarCadastrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbVoltarCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbVoltarCadastrar.setMaximumSize(new java.awt.Dimension(80, 30));
+        jbVoltarCadastrar.setMinimumSize(new java.awt.Dimension(80, 30));
+        jbVoltarCadastrar.setPreferredSize(new java.awt.Dimension(110, 20));
+        jbVoltarCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbVoltarCadastrarActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(102, 51, 0));
-        jButton4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Cadastrar-se");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setMaximumSize(new java.awt.Dimension(80, 30));
-        jButton4.setMinimumSize(new java.awt.Dimension(80, 30));
-        jButton4.setPreferredSize(new java.awt.Dimension(110, 20));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbCadastrarSe.setBackground(new java.awt.Color(102, 51, 0));
+        jbCadastrarSe.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jbCadastrarSe.setForeground(new java.awt.Color(255, 255, 255));
+        jbCadastrarSe.setText("Cadastrar-se");
+        jbCadastrarSe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbCadastrarSe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbCadastrarSe.setMaximumSize(new java.awt.Dimension(80, 30));
+        jbCadastrarSe.setMinimumSize(new java.awt.Dimension(80, 30));
+        jbCadastrarSe.setPreferredSize(new java.awt.Dimension(110, 20));
+        jbCadastrarSe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbCadastrarSeActionPerformed(evt);
             }
         });
 
@@ -409,9 +417,9 @@ public class TelaCadastrar extends javax.swing.JFrame {
                                 .addGap(45, 45, 45))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbVoltarCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbCadastrarSe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -435,8 +443,8 @@ public class TelaCadastrar extends javax.swing.JFrame {
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jbVoltarCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbCadastrarSe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45))))
         );
 
@@ -459,13 +467,13 @@ public class TelaCadastrar extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jbVoltarCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarCadastrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jbVoltarCadastrarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbCadastrarSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarSeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbCadastrarSeActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -526,8 +534,6 @@ public class TelaCadastrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
@@ -555,5 +561,7 @@ public class TelaCadastrar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jbCadastrarSe;
+    private javax.swing.JButton jbVoltarCadastrar;
     // End of variables declaration//GEN-END:variables
 }

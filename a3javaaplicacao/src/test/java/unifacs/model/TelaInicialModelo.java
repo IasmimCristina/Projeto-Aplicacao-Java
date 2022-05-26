@@ -8,11 +8,12 @@ package unifacs.model;
  *
  * @author YellowRed
  */
-public class TelaInicial implements  ITelaInicial{
+public class TelaInicialModelo implements  ITelaInicial{
+    //Talvez possa ser substituída pela classe controller!
     private Cliente cliente;
     private final String codigoSenha;
 
-    public TelaInicial(Cliente cliente) {
+    public TelaInicialModelo(Cliente cliente) {
         this.codigoSenha = ("8654ABCD");
         this.cliente = cliente;
     }

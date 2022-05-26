@@ -12,61 +12,67 @@ import java.util.Random;
  * @author YellowRed
  */
 public class Pagamento extends Pedido implements IPagamento {
-    //Apague o cache!
 
     @Override
     public void calcularParcelas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void fazerPagamento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void efetuarPagamento() {
+        //Com todos os tipos de pagamento
     }
 
     @Override
     public void cancelarPedidoPagamento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
     public Cliente getCliente() {
         return cliente;
     }
 
+    @Override
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
+    @Override
     public Random getIdGerador() {
         return idGerador;
     }
 
+    @Override
     public void setIdGerador(Random idGerador) {
         this.idGerador = idGerador;
     }
 
+    @Override
     public ArrayList<Refeicao> getProdutosEscolhidos() {
         return produtosEscolhidos;
     }
 
+    @Override
     public void setProdutosEscolhidos(ArrayList<Refeicao> produtosEscolhidos) {
         this.produtosEscolhidos = produtosEscolhidos;
     }
 
+    @Override
     public RestauranteBr getRestauranteBr() {
         return restauranteBr;
     }
 
+    @Override
     public void setRestauranteBr(RestauranteBr restauranteBr) {
         this.restauranteBr = restauranteBr;
     }
 
+    @Override
     public RestauranteInternacional getRestauranteInternacional() {
         return restauranteInternacional;
     }
 
+    @Override
     public void setRestauranteInternacional(RestauranteInternacional restauranteInternacional) {
         this.restauranteInternacional = restauranteInternacional;
-    }    
+    }
 }
-        

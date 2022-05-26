@@ -4,17 +4,25 @@
  */
 package unifacs.view;
 
+import unifacs.controller.TelasIniciaisController;
+
 /**
  *
  * @author YellowRed
  */
 public class TelaEsqueceuSenha extends javax.swing.JFrame {
+    private final TelaEntrar viewEntrar;
+    private final TelaUsuario viewUsuario;
+    private final TelasIniciaisController controller;
 
     /**
      * Creates new form TelaInicial
      */
     public TelaEsqueceuSenha() {
         initComponents();
+        this.viewEntrar = new TelaEntrar();
+        this.viewUsuario = new TelaUsuario();
+        this.controller = new TelasIniciaisController(viewEntrar, this);
     }
 
     /**
@@ -30,14 +38,14 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbEntrarNovamente = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jbVoltarEsqueceuSenha = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -93,18 +101,18 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jButton1.setBackground(new java.awt.Color(102, 51, 0));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tentar entrar novamente");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setMaximumSize(new java.awt.Dimension(80, 30));
-        jButton1.setMinimumSize(new java.awt.Dimension(80, 30));
-        jButton1.setPreferredSize(new java.awt.Dimension(110, 20));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbEntrarNovamente.setBackground(new java.awt.Color(102, 51, 0));
+        jbEntrarNovamente.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jbEntrarNovamente.setForeground(new java.awt.Color(255, 255, 255));
+        jbEntrarNovamente.setText("Tentar entrar novamente");
+        jbEntrarNovamente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbEntrarNovamente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbEntrarNovamente.setMaximumSize(new java.awt.Dimension(80, 30));
+        jbEntrarNovamente.setMinimumSize(new java.awt.Dimension(80, 30));
+        jbEntrarNovamente.setPreferredSize(new java.awt.Dimension(110, 20));
+        jbEntrarNovamente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbEntrarNovamenteActionPerformed(evt);
             }
         });
 
@@ -164,18 +172,18 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Código:");
 
-        jButton2.setBackground(new java.awt.Color(102, 51, 0));
-        jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Voltar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setMaximumSize(new java.awt.Dimension(80, 30));
-        jButton2.setMinimumSize(new java.awt.Dimension(80, 30));
-        jButton2.setPreferredSize(new java.awt.Dimension(110, 20));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbVoltarEsqueceuSenha.setBackground(new java.awt.Color(102, 51, 0));
+        jbVoltarEsqueceuSenha.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jbVoltarEsqueceuSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jbVoltarEsqueceuSenha.setText("Voltar");
+        jbVoltarEsqueceuSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbVoltarEsqueceuSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbVoltarEsqueceuSenha.setMaximumSize(new java.awt.Dimension(80, 30));
+        jbVoltarEsqueceuSenha.setMinimumSize(new java.awt.Dimension(80, 30));
+        jbVoltarEsqueceuSenha.setPreferredSize(new java.awt.Dimension(110, 20));
+        jbVoltarEsqueceuSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbVoltarEsqueceuSenhaActionPerformed(evt);
             }
         });
 
@@ -210,7 +218,7 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbEntrarNovamente, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +236,7 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
                                     .addComponent(jLabel3)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jbVoltarEsqueceuSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,9 +263,9 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbEntrarNovamente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbVoltarEsqueceuSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,9 +287,9 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbEntrarNovamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarNovamenteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbEntrarNovamenteActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         System.exit(0);
@@ -295,9 +303,9 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbVoltarEsqueceuSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarEsqueceuSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbVoltarEsqueceuSenhaActionPerformed
 
     private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
         // TODO add your handling code here:
@@ -342,8 +350,6 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -357,5 +363,7 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbEntrarNovamente;
+    private javax.swing.JButton jbVoltarEsqueceuSenha;
     // End of variables declaration//GEN-END:variables
 }
