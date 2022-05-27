@@ -18,14 +18,14 @@ public class Cliente implements ICliente {
     private String cpf;
     private String numTelefone;
     //Não obrigatórios:    
-    private String cartaoCredito;
-    private String cartaoDebito;
+    
     //Local de entrega? No pagamento.
     private LinkedList<Pedido> pedidosCliente;
 
     public Cliente() {
     }
 
+    //Sem a LinkedList.
     public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone) {
         this.nomeCompleto = nomeCompleto;
         this.nomeUsuario = nomeUsuario;
@@ -35,55 +35,21 @@ public class Cliente implements ICliente {
         this.numTelefone = numTelefone;
     }
     
-    //Construtor para os testes:
+    //Construtor
+    //Cartão: somente na hora do pagamento.
 
-    public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone,  String cartaoCredito, String cartaoDebito, LinkedList<Pedido> pedidosCliente) {
-        this.nomeCompleto = nomeCompleto;
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.numTelefone = numTelefone;        
-        this.cartaoCredito = cartaoCredito;
-        this.cartaoDebito = cartaoDebito;
-        this.pedidosCliente = pedidosCliente;
-    }
-    
-    
-    //Não contém o cartão de crédito.
-    public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone,  LinkedList<Pedido> pedidosCliente,String cartaoDebito) {
-        this.nomeCompleto = nomeCompleto;
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.numTelefone = numTelefone;        
-        this.pedidosCliente = pedidosCliente;
-        this.cartaoDebito = cartaoDebito;
-    }
-    
-    //Não contém o cartão de débito:
-    public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone, String cartaoCredito, LinkedList<Pedido> pedidosCliente) {
+    public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone, LinkedList<Pedido> pedidosCliente) {
         this.nomeCompleto = nomeCompleto;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.cpf = cpf;
         this.numTelefone = numTelefone;
-        this.cartaoCredito = cartaoCredito;
         this.pedidosCliente = pedidosCliente;
     }
-    //Não contém o cartão de crédito com uma lista de pedidos não criada:
-
-    public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone, String cartaoDebito) {
-        this.nomeCompleto = nomeCompleto;
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.numTelefone = numTelefone;
-        this.cartaoDebito = cartaoDebito;
-    }
+    
+    
+    
     
     
     @Override
@@ -156,21 +122,7 @@ public class Cliente implements ICliente {
 
     
 
-    public String getCartaoCredito() {
-        return cartaoCredito;
-    }
-
-    public void setCartaoCredito(String cartaoCredito) {
-        this.cartaoCredito = cartaoCredito;
-    }
-
-    public String getCartaoDebito() {
-        return cartaoDebito;
-    }
-
-    public void setCartaoDebito(String cartaoDebito) {
-        this.cartaoDebito = cartaoDebito;
-    }
+   
 
     public LinkedList<Pedido> getPedidosCliente() {
         return pedidosCliente;

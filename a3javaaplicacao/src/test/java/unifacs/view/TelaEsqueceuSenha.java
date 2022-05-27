@@ -11,18 +11,20 @@ import unifacs.controller.TelasIniciaisController;
  * @author YellowRed
  */
 public class TelaEsqueceuSenha extends javax.swing.JFrame {
-    private final TelaEntrar viewEntrar;
-    private final TelaUsuario viewUsuario;
-    private final TelasIniciaisController controller;
+
+    private  TelaEntrar viewEntrar;
+    private  TelaUsuario viewUsuario;
+    private  TelasIniciaisController controller;
 
     /**
      * Creates new form TelaInicial
      */
     public TelaEsqueceuSenha() {
+        this.viewEntrar = viewEntrar;
+        this.viewUsuario = viewUsuario;
+        this.controller = controller;
         initComponents();
-        this.viewEntrar = new TelaEntrar();
-        this.viewUsuario = new TelaUsuario();
-        this.controller = new TelasIniciaisController(viewEntrar, this);
+
     }
 
     /**
@@ -41,13 +43,13 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         jbEntrarNovamente = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTCodigo = new javax.swing.JTextField();
+        jPNovaSenhaValidacao = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jbVoltarEsqueceuSenha = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        jPNovaSenha = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,20 +147,20 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
             .addGap(0, 449, Short.MAX_VALUE)
         );
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setPreferredSize(new java.awt.Dimension(350, 30));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        jTCodigo.setPreferredSize(new java.awt.Dimension(350, 30));
+        jTCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTCodigoActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("senhaExemplo");
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(250, 30));
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jPNovaSenhaValidacao.setBackground(new java.awt.Color(255, 255, 255));
+        jPNovaSenhaValidacao.setText("senhaExemplo");
+        jPNovaSenhaValidacao.setPreferredSize(new java.awt.Dimension(250, 30));
+        jPNovaSenhaValidacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                jPNovaSenhaValidacaoActionPerformed(evt);
             }
         });
 
@@ -192,12 +194,12 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nova senha:");
 
-        jPasswordField2.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField2.setText("senhaExemplo");
-        jPasswordField2.setPreferredSize(new java.awt.Dimension(250, 30));
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        jPNovaSenha.setBackground(new java.awt.Color(255, 255, 255));
+        jPNovaSenha.setText("senhaExemplo");
+        jPNovaSenha.setPreferredSize(new java.awt.Dimension(250, 30));
+        jPNovaSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                jPNovaSenhaActionPerformed(evt);
             }
         });
 
@@ -226,13 +228,13 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
                                 .addGap(133, 133, 133)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPNovaSenhaValidacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(167, 167, 167)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -251,17 +253,17 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(jLabel3)
                         .addGap(0, 0, 0)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPNovaSenhaValidacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(jbEntrarNovamente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
@@ -288,28 +290,30 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbEntrarNovamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarNovamenteActionPerformed
-        // TODO add your handling code here:
+        // Nova senha configurada - Tela de esquecimento da senha
+        this.controller.exibirTelaEntrar();
     }//GEN-LAST:event_jbEntrarNovamenteActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTCodigoActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void jPNovaSenhaValidacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPNovaSenhaValidacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_jPNovaSenhaValidacaoActionPerformed
 
     private void jbVoltarEsqueceuSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarEsqueceuSenhaActionPerformed
-        // TODO add your handling code here:
+        // Voltar para a tela Entrar
+        this.controller.exibirTelaEntrar();
     }//GEN-LAST:event_jbVoltarEsqueceuSenhaActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void jPNovaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPNovaSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_jPNovaSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,15 +358,15 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPNovaSenha;
+    private javax.swing.JPasswordField jPNovaSenhaValidacao;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTCodigo;
     private javax.swing.JButton jbEntrarNovamente;
     private javax.swing.JButton jbVoltarEsqueceuSenha;
     // End of variables declaration//GEN-END:variables

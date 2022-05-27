@@ -11,23 +11,26 @@ import unifacs.controller.TelasIniciaisController;
  * @author YellowRed
  */
 public class TelaInicial extends javax.swing.JFrame {
-    TelaCadastrar viewCadastrar;
-    TelaEntrar viewEntrar;
-    TelaEsqueceuSenha viewEsqueceuSenha;
-    TelaUsuario viewUsuario;
+    private final TelaCadastrar viewCadastrar;
+    private final TelaEntrar viewEntrar;
+    private final TelaEsqueceuSenha viewEsqueceuSenha;
+    private final TelaUsuario viewUsuario;
     private final TelasIniciaisController controller;
    
 
     /**
      * Creates new form TelaInicial
      */
-    public TelaInicial() {
-        this.viewCadastrar = new TelaCadastrar();
-        this.viewEntrar = new TelaEntrar();        
-        this.viewEsqueceuSenha = new TelaEsqueceuSenha();
-        this.viewUsuario = new TelaUsuario();
-        initComponents();
-         controller = new TelasIniciaisController(this,this.viewCadastrar,this.viewEntrar,this.viewEsqueceuSenha,this.viewUsuario);
+    public TelaInicial() {       
+         initComponents();
+         this.viewCadastrar = new TelaCadastrar(); 
+         this.viewEntrar = new TelaEntrar();        
+         this.viewEsqueceuSenha = new TelaEsqueceuSenha();
+         this.viewUsuario = new TelaUsuario();
+         this.controller = new TelasIniciaisController(this,this.viewCadastrar,this.viewEntrar,this.viewEsqueceuSenha,this.viewUsuario);
+         //Métodos ou funções estáticas
+         
+
     }
 
     /**
@@ -189,6 +192,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jbEntrarInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarInicialActionPerformed
         // TODO add your handling code here:
+        this.controller.exibirTelaEntrar();
     }//GEN-LAST:event_jbEntrarInicialActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

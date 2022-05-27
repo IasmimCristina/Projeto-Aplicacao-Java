@@ -11,20 +11,21 @@ import unifacs.controller.TelasIniciaisController;
  * @author YellowRed
  */
 public class TelaEntrar extends javax.swing.JFrame {
-    private final TelaInicial viewInicial;
-    private final TelaUsuario viewUsuario;
-    private final TelaEsqueceuSenha viewEsqueceuSenha;
-    private final TelasIniciaisController controller;
+    private  TelaInicial viewInicial;
+    private  TelaUsuario viewUsuario;
+    private  TelaEsqueceuSenha viewEsqueceuSenha;
+    private  TelasIniciaisController controller;
 
     /**
      * Creates new form TelaInicial
      */
     public TelaEntrar() {
+        this.viewInicial = viewInicial;
+        this.viewUsuario = viewUsuario;
+        this.viewEsqueceuSenha = viewEsqueceuSenha;
+        this.controller = controller;
         initComponents();
-        this.viewInicial = new TelaInicial();
-        this.viewUsuario = new TelaUsuario();
-        this.viewEsqueceuSenha = new TelaEsqueceuSenha();
-        this.controller = new TelasIniciaisController(viewInicial, this, viewEsqueceuSenha, viewUsuario);
+
     }
 
     /**
@@ -43,12 +44,12 @@ public class TelaEntrar extends javax.swing.JFrame {
         jbEntrar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTEntrarEmail = new javax.swing.JTextField();
+        jPEntrarSenha = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jbVoltarEntrar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbEsqueceuSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Entrar");
@@ -145,21 +146,21 @@ public class TelaEntrar extends javax.swing.JFrame {
             .addGap(0, 449, Short.MAX_VALUE)
         );
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("usuario@email.com");
-        jTextField1.setPreferredSize(new java.awt.Dimension(350, 30));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTEntrarEmail.setBackground(new java.awt.Color(255, 255, 255));
+        jTEntrarEmail.setText("usuario@email.com");
+        jTEntrarEmail.setPreferredSize(new java.awt.Dimension(350, 30));
+        jTEntrarEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTEntrarEmailActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("senhaExemplo");
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(250, 30));
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jPEntrarSenha.setBackground(new java.awt.Color(255, 255, 255));
+        jPEntrarSenha.setText("senhaExemplo");
+        jPEntrarSenha.setPreferredSize(new java.awt.Dimension(250, 30));
+        jPEntrarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                jPEntrarSenhaActionPerformed(evt);
             }
         });
 
@@ -188,19 +189,19 @@ public class TelaEntrar extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Trebuchet MS", 3, 10)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 153, 0));
-        jButton3.setText("Esqueceu a senha?");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jButton3.setBorderPainted(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setMaximumSize(new java.awt.Dimension(80, 30));
-        jButton3.setMinimumSize(new java.awt.Dimension(80, 30));
-        jButton3.setPreferredSize(new java.awt.Dimension(110, 20));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbEsqueceuSenha.setBackground(new java.awt.Color(255, 255, 255));
+        jbEsqueceuSenha.setFont(new java.awt.Font("Trebuchet MS", 3, 10)); // NOI18N
+        jbEsqueceuSenha.setForeground(new java.awt.Color(255, 153, 0));
+        jbEsqueceuSenha.setText("Esqueceu a senha?");
+        jbEsqueceuSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jbEsqueceuSenha.setBorderPainted(false);
+        jbEsqueceuSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbEsqueceuSenha.setMaximumSize(new java.awt.Dimension(80, 30));
+        jbEsqueceuSenha.setMinimumSize(new java.awt.Dimension(80, 30));
+        jbEsqueceuSenha.setPreferredSize(new java.awt.Dimension(110, 20));
+        jbEsqueceuSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbEsqueceuSenhaActionPerformed(evt);
             }
         });
 
@@ -215,11 +216,11 @@ public class TelaEntrar extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTEntrarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPEntrarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbEsqueceuSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(94, 94, 94)
                                 .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -239,13 +240,13 @@ public class TelaEntrar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(0, 0, 0)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTEntrarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPEntrarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbEsqueceuSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)
@@ -280,21 +281,23 @@ public class TelaEntrar extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTEntrarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTEntrarEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTEntrarEmailActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void jPEntrarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPEntrarSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_jPEntrarSenhaActionPerformed
 
     private void jbVoltarEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarEntrarActionPerformed
-        // TODO add your handling code here:
+        // Voltar para a tela inicial.
+        this.controller.voltarTelaEntrar();
     }//GEN-LAST:event_jbVoltarEntrarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jbEsqueceuSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEsqueceuSenhaActionPerformed
+        // Exibir a tela do esquecimento da senha.
+        this.controller.exibirTelaEsqueceu();
+    }//GEN-LAST:event_jbEsqueceuSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,18 +336,18 @@ public class TelaEntrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jPEntrarSenha;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTEntrarEmail;
     private javax.swing.JButton jbEntrar;
+    private javax.swing.JButton jbEsqueceuSenha;
     private javax.swing.JButton jbVoltarEntrar;
     // End of variables declaration//GEN-END:variables
 }
