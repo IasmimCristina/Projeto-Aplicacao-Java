@@ -156,7 +156,6 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         });
 
         jPNovaSenhaValidacao.setBackground(new java.awt.Color(255, 255, 255));
-        jPNovaSenhaValidacao.setText("senhaExemplo");
         jPNovaSenhaValidacao.setPreferredSize(new java.awt.Dimension(250, 30));
         jPNovaSenhaValidacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +194,6 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
         jLabel4.setText("Nova senha:");
 
         jPNovaSenha.setBackground(new java.awt.Color(255, 255, 255));
-        jPNovaSenha.setText("senhaExemplo");
         jPNovaSenha.setPreferredSize(new java.awt.Dimension(250, 30));
         jPNovaSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

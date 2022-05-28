@@ -64,11 +64,11 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jTCadastrarEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTCadastrarNomeUsuario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPCadastrarSenha = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         jPCadastrarValidarSenha = new javax.swing.JPasswordField();
+        jfCadastrarNomeUsuario = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
@@ -179,7 +179,11 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jFCadastrarCPF.setPreferredSize(new java.awt.Dimension(350, 30));
 
         jTCadastrarNomeCompleto.setBackground(new java.awt.Color(255, 255, 255));
-        jTCadastrarNomeCompleto.setText("Usuario");
+        jTCadastrarNomeCompleto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCadastrarNomeCompletoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome completo");
@@ -216,7 +220,7 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTCadastrarNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,7 +255,6 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jPanel9.setForeground(new java.awt.Color(51, 0, 0));
 
         jTCadastrarEmail.setBackground(new java.awt.Color(255, 255, 255));
-        jTCadastrarEmail.setText("usuario@email.com");
         jTCadastrarEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTCadastrarEmailActionPerformed(evt);
@@ -264,19 +267,10 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Email");
 
-        jTCadastrarNomeUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        jTCadastrarNomeUsuario.setText("Usuario");
-        jTCadastrarNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCadastrarNomeUsuarioActionPerformed(evt);
-            }
-        });
-
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Senha");
 
         jPCadastrarSenha.setBackground(new java.awt.Color(255, 255, 255));
-        jPCadastrarSenha.setText("senhaExemplo");
         jPCadastrarSenha.setPreferredSize(new java.awt.Dimension(250, 30));
         jPCadastrarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,7 +282,6 @@ public class TelaCadastrar extends javax.swing.JFrame {
         jLabel8.setText("Confirme a senha");
 
         jPCadastrarValidarSenha.setBackground(new java.awt.Color(255, 255, 255));
-        jPCadastrarValidarSenha.setText("senhaExemplo");
         jPCadastrarValidarSenha.setPreferredSize(new java.awt.Dimension(250, 30));
         jPCadastrarValidarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,27 +289,36 @@ public class TelaCadastrar extends javax.swing.JFrame {
             }
         });
 
+        jfCadastrarNomeUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        try {
+            jfCadastrarNomeUsuario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jfCadastrarNomeUsuario.setPreferredSize(new java.awt.Dimension(350, 30));
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jTCadastrarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPCadastrarValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jfCadastrarNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jTCadastrarNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jPCadastrarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTCadastrarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(85, 85, 85)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPCadastrarValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jPCadastrarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -328,19 +330,19 @@ public class TelaCadastrar extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTCadastrarNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPCadastrarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPCadastrarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jfCadastrarNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jLabel8))
+                        .addComponent(jLabel6))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTCadastrarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPCadastrarValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPCadastrarValidarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTCadastrarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
 
@@ -429,13 +431,13 @@ public class TelaCadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPCadastrarSenhaActionPerformed
 
-    private void jTCadastrarNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCadastrarNomeUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCadastrarNomeUsuarioActionPerformed
-
     private void jTCadastrarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCadastrarEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCadastrarEmailActionPerformed
+
+    private void jTCadastrarNomeCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCadastrarNomeCompletoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCadastrarNomeCompletoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -501,9 +503,9 @@ public class TelaCadastrar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField jTCadastrarEmail;
     private javax.swing.JTextField jTCadastrarNomeCompleto;
-    private javax.swing.JTextField jTCadastrarNomeUsuario;
     private javax.swing.JButton jbCadastrarSe;
     private javax.swing.JButton jbVoltarCadastrar;
+    private javax.swing.JFormattedTextField jfCadastrarNomeUsuario;
     // End of variables declaration//GEN-END:variables
 
    
@@ -557,12 +559,12 @@ public class TelaCadastrar extends javax.swing.JFrame {
         this.jTCadastrarNomeCompleto = jTCadastrarNomeCompleto;
     }
 
-    public JTextField getjTCadastrarNomeUsuario() {
-        return jTCadastrarNomeUsuario;
+    public JTextField getjfCadastrarNomeUsuario() {
+        return jfCadastrarNomeUsuario;
     }
 
-    public void setjTCadastrarNomeUsuario(JTextField jTCadastrarNomeUsuario) {
-        this.jTCadastrarNomeUsuario = jTCadastrarNomeUsuario;
+    public void setjfCadastrarNomeUsuario(JFormattedTextField jfCadastrarNomeUsuario) {
+        this.jfCadastrarNomeUsuario = jfCadastrarNomeUsuario;
     }
     
     //Getters e setters restantes:

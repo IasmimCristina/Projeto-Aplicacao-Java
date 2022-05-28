@@ -17,6 +17,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private final TelaUsuario viewUsuario;
     private final TelasIniciaisController controller;
    
+    //Fazer a validação da criação do cliente.
+    //Criar clientes já cadastrados para testar a validação dos clientes criados.
+    //Eles possuirão listas de pedidos vazias inicialmente.
+    //Testar detalhes da classe Pedido na classe Principal.
 
     /**
      * Creates new form TelaInicial

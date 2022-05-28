@@ -85,7 +85,8 @@ public class TelasIniciaisController implements ITelaInicial{
         //Fazer as validações necessárias.
         //Pegar novo cliente.
         //Ir para a tela usuário.
-        Cliente cliente = this.helperCadastrar.obterClienteDaTela();
+        Cliente cliente = helperCadastrar.obterClienteDaTelaCadastrar();
+        helperCadastrar.definirClienteNaTelaCadastrar(cliente);
         //Parei aqui: obtive o cliente (sem validações) da tela.
         //Fazer: validações, criar e validar a entrada do usuário exibir a tela do usuário
         //Ainda estou efetuando o cadastro e entrada.

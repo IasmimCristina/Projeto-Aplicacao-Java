@@ -1,5 +1,7 @@
 package unifacs.model;
 
+import java.time.LocalDate;
+
 
 
 /*
@@ -16,12 +18,18 @@ public class Principal {
         
        
         
-        System.out.println("Olá...");
+        System.out.println("Olá..."); //BreakPoint
         //System.out.println(exemplo.getCardapioCafeDaManha());
         //System.out.println("Teste!!"); //Primeiro teste e segundo teste.
         //RestauranteBr exemplo = new RestauranteBr();
-        RestauranteInternacional exemploInt = new RestauranteInternacional();
-        System.out.println("Exemplo!");
+        //RestauranteInternacional exemploInt = new RestauranteInternacional();
+        System.out.println("Exemplo!"); //BreakPoint
+        LocalDate geradorData = LocalDate.now();
+        System.out.println(geradorData); //Ano, mês e dia.
+        String data = String.valueOf(geradorData.getDayOfMonth() +"/"+ geradorData.getMonthValue() +"/"+  geradorData.getYear());// Funcionou!!
+        System.out.println(data);
+        
+        //Teste uma variável Random estática!!
        
         
         

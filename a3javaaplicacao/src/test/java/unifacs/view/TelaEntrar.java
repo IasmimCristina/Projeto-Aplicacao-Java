@@ -147,7 +147,6 @@ public class TelaEntrar extends javax.swing.JFrame {
         );
 
         jTEntrarEmail.setBackground(new java.awt.Color(255, 255, 255));
-        jTEntrarEmail.setText("usuario@email.com");
         jTEntrarEmail.setPreferredSize(new java.awt.Dimension(350, 30));
         jTEntrarEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +155,6 @@ public class TelaEntrar extends javax.swing.JFrame {
         });
 
         jPEntrarSenha.setBackground(new java.awt.Color(255, 255, 255));
-        jPEntrarSenha.setText("senhaExemplo");
         jPEntrarSenha.setPreferredSize(new java.awt.Dimension(250, 30));
         jPEntrarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
