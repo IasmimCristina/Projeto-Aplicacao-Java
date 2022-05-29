@@ -13,6 +13,8 @@ import java.util.Random;
  */
 public class Pagamento extends Pedido implements IPagamento {
 
+    String localEntrega;
+    
     @Override
     public void calcularParcelas() {
     }
@@ -36,15 +38,7 @@ public class Pagamento extends Pedido implements IPagamento {
         this.cliente = cliente;
     }
 
-    @Override
-    public Random getIdGerador() {
-        return idGerador;
-    }
-
-    @Override
-    public void setIdGerador(Random idGerador) {
-        this.idGerador = idGerador;
-    }
+   
 
     @Override
     public ArrayList<Refeicao> getProdutosEscolhidos() {

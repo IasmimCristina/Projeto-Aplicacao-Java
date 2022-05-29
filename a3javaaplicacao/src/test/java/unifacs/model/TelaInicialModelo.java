@@ -20,9 +20,9 @@ public class TelaInicialModelo implements  ITelaInicial{
     
     
     @Override
-    public Cliente cadastrar() {
+    public void cadastrar() {
         //Deve abranger as opções com ou sem os cartões de crédito.
-        return cliente;
+        
     }
 
     @Override

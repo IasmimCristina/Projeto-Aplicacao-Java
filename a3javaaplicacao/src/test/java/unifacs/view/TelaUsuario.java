@@ -4,6 +4,9 @@
  */
 package unifacs.view;
 
+import javax.swing.JDesktopPane;
+import unifacs.controller.TelaUsuarioController;
+
 /**
  *
  * @author YellowRed
@@ -11,16 +14,26 @@ package unifacs.view;
 public class TelaUsuario extends javax.swing.JFrame {
 
     //Telas internas da aplicação.
-    JITelaVisualizarConta telaVisualizarConta = new JITelaVisualizarConta();
-    JIFazerPedido telaFazerPedido = new JIFazerPedido();
-    JITelaPedidoRestaurante1 telaPedidoRestaurante1 = new JITelaPedidoRestaurante1();
+    private final JITelaVisualizarConta viewVisualizarConta;
+    private final JIFazerPedido viewFazerPedido;
+    private final JITelaPedidoRestaurante1 viewPedidoRestaurante1;
+    private final JITelaPedidoRestaurante2 viewPedidoRestaurante2;
+    private final JITelaPagamento viewTelaPagamento;
+    //Controller:
+    private final TelaUsuarioController controller;
     // Ganhar uma variável que dirá que o restaurante 1 deve abrir a tela Fazer pedido deve ser fechada.
-    JITelaPagamento telaPagamento = new JITelaPagamento();
+    
     /**
      * Creates new form TelaUsuario
      */
     public TelaUsuario() {
         initComponents();
+        this.viewVisualizarConta = new JITelaVisualizarConta();
+        this.viewFazerPedido = new JIFazerPedido();
+        this.viewPedidoRestaurante1 = new JITelaPedidoRestaurante1();
+        this.viewPedidoRestaurante2 = new JITelaPedidoRestaurante2();
+        this.viewTelaPagamento = new JITelaPagamento();
+        this.controller = new TelaUsuarioController(this, viewVisualizarConta, viewPedidoRestaurante1, viewPedidoRestaurante2, viewTelaPagamento, viewFazerPedido);
     }
     
 
@@ -36,20 +49,18 @@ public class TelaUsuario extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jlNomeUsuarioTelaUsuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTabelaPedidos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jbFazerUmPedido = new javax.swing.JButton();
+        jAreaDeTrabalho = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmBarraMenu = new javax.swing.JMenuBar();
+        jmVisualizarConta = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmDesconectarConta = new javax.swing.JMenuItem();
+        jmExcluirConta = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
 
@@ -60,17 +71,18 @@ public class TelaUsuario extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(102, 51, 0));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Exemplo!!");
+        jlNomeUsuarioTelaUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlNomeUsuarioTelaUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jlNomeUsuarioTelaUsuario.setText("Olá, Nome do usuário!");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nome do usuário!");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTabelaPedidos.setBackground(new java.awt.Color(153, 102, 0));
+        jtTabelaPedidos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "- Lista de pedidos -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(102, 51, 0))); // NOI18N
+        jtTabelaPedidos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtTabelaPedidos.setForeground(new java.awt.Color(102, 51, 0));
+        jtTabelaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -81,20 +93,23 @@ public class TelaUsuario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTabelaPedidos);
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel3.setBackground(new java.awt.Color(51, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Descontos disponíveis!");
+        jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avisos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(255, 204, 51))); // NOI18N
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Fazer um pedido");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbFazerUmPedido.setBackground(new java.awt.Color(255, 255, 255));
+        jbFazerUmPedido.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jbFazerUmPedido.setForeground(new java.awt.Color(102, 51, 0));
+        jbFazerUmPedido.setText("Fazer um pedido");
+        jbFazerUmPedido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 102, 0), 4));
+        jbFazerUmPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbFazerUmPedidoActionPerformed(evt);
             }
         });
 
@@ -105,49 +120,46 @@ public class TelaUsuario extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jlNomeUsuarioTelaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(38, 38, 38)
+                .addComponent(jlNomeUsuarioTelaUsuario)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         jLabel4.setIcon(new javax.swing.ImageIcon("D:\\estudos\\gitGithubInstalacoes\\projetosPessoais\\Projeto-Aplicacao-Java\\a3javaaplicacao\\src\\test\\java\\unifacs\\view\\images\\background\\backgroundOficialUsuario.png")); // NOI18N
 
-        jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jAreaDeTrabalho.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 969, Short.MAX_VALUE)
+        javax.swing.GroupLayout jAreaDeTrabalhoLayout = new javax.swing.GroupLayout(jAreaDeTrabalho);
+        jAreaDeTrabalho.setLayout(jAreaDeTrabalhoLayout);
+        jAreaDeTrabalhoLayout.setHorizontalGroup(
+            jAreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jAreaDeTrabalhoLayout.setVerticalGroup(
+            jAreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -158,25 +170,25 @@ public class TelaUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jDesktopPane1))
+                .addComponent(jAreaDeTrabalho))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jDesktopPane1)
+            .addComponent(jAreaDeTrabalho)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(102, 51, 0));
-        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
+        jmBarraMenu.setBackground(new java.awt.Color(102, 51, 0));
+        jmBarraMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 51, 0), 5));
+        jmBarraMenu.setForeground(new java.awt.Color(0, 0, 0));
 
-        jMenu1.setBackground(new java.awt.Color(0, 0, 0));
-        jMenu1.setBorder(null);
-        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
-        jMenu1.setText("\nMinha conta\n");
-        jMenu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu1.setPreferredSize(new java.awt.Dimension(100, 50));
+        jmVisualizarConta.setBackground(new java.awt.Color(0, 0, 0));
+        jmVisualizarConta.setBorder(null);
+        jmVisualizarConta.setForeground(new java.awt.Color(0, 0, 0));
+        jmVisualizarConta.setText("\nMinha conta\n");
+        jmVisualizarConta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jmVisualizarConta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jmVisualizarConta.setPreferredSize(new java.awt.Dimension(100, 50));
 
         jMenuItem1.setText("Vizualizar conta");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -184,20 +196,17 @@ public class TelaUsuario extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jmVisualizarConta.add(jMenuItem1);
 
-        jMenuItem2.setText("Desconectar conta");
-        jMenu1.add(jMenuItem2);
+        jmDesconectarConta.setText("Desconectar conta");
+        jmVisualizarConta.add(jmDesconectarConta);
 
-        jMenuItem4.setText("Excluir conta");
-        jMenu1.add(jMenuItem4);
+        jmExcluirConta.setText("Excluir conta");
+        jmVisualizarConta.add(jmExcluirConta);
 
-        jMenuBar1.add(jMenu1);
+        jmBarraMenu.add(jmVisualizarConta);
 
-        jMenu2.setText("Sair");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jmBarraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,18 +226,18 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         //Aqui        
-        jDesktopPane1.add(telaVisualizarConta);
-        telaVisualizarConta.setVisible(true);
+        jAreaDeTrabalho.add(viewVisualizarConta);
+        viewVisualizarConta.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbFazerUmPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFazerUmPedidoActionPerformed
         // TODO add your handling code here:
         
-        jDesktopPane1.add(telaFazerPedido);
-        telaFazerPedido.setVisible(true);
+        jAreaDeTrabalho.add(viewFazerPedido);
+        viewFazerPedido.setVisible(true);
         //Crie uma condição que faça com que os outras  JI apareçam.
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbFazerUmPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,22 +275,36 @@ public class TelaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JDesktopPane jAreaDeTrabalho;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbFazerUmPedido;
+    private javax.swing.JLabel jlNomeUsuarioTelaUsuario;
+    private javax.swing.JMenuBar jmBarraMenu;
+    private javax.swing.JMenuItem jmDesconectarConta;
+    private javax.swing.JMenuItem jmExcluirConta;
+    private javax.swing.JMenu jmVisualizarConta;
+    private javax.swing.JTable jtTabelaPedidos;
     // End of variables declaration//GEN-END:variables
+
+   
+
+    //Getters e setters usados:
+    
+    
+    
+     public JDesktopPane getjAreaDeTrabalho() {
+        return jAreaDeTrabalho;
+    }
+
+    public void setjAreaDeTrabalho(JDesktopPane jAreaDeTrabalho) {
+        this.jAreaDeTrabalho = jAreaDeTrabalho;
+    }
+    
+    
 }

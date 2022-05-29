@@ -9,7 +9,7 @@ package unifacs.model;
  * @author YellowRed
  */
 public interface ITelaInicial {
-    Cliente cadastrar();
+    void cadastrar();
     Cliente entrar();
     void esqueceuSenha();//Somente modifica a senha de um cliente já cadastrado.
     

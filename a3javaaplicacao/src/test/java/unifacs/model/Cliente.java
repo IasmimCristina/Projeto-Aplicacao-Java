@@ -65,9 +65,7 @@ public class Cliente implements ICliente {
     public void excluirConta() {
     }
 
-    @Override
-    public void configurarPagamento(String cartaoCredito, String cartaoDebito) {
-    }
+    
     
     
     

@@ -17,8 +17,8 @@ import java.util.Random;
 public class Pedido implements IPedido  {
     Cliente cliente;
     private  static LocalDate geradorData;
-    private String dataPedido;
-    private static Random idGerador;
+    private final String dataPedido; //Variável final, talvez cause problemas!
+    private  Random idGerador = new Random();
     private int idPedido;//Identificador específico de cada pedido feito na aplicação.
     private String estado;
     ArrayList<Refeicao> produtosEscolhidos = new ArrayList<>(); //Dois construtores: com quantidade disponivel e sem ela.
@@ -31,8 +31,8 @@ public class Pedido implements IPedido  {
     public Pedido(Cliente cliente) { //Valores iniciais, irão mudar conforme o pedido se desenvolva. 
         this.cliente = cliente; 
         //Random?               
-        this.dataPedido = String.valueOf(geradorData.getDayOfMonth() +"/"+ geradorData.getMonthValue() +"/"+  geradorData.getYear());; //Ordem da data incorreta!!! Talvez ValueOfString? SIM, FEITO EM PRINCIPAL!! Corrigida.
-        this.idPedido = idGerador.nextInt(1000); //Valor inicial sem a valiidação. Ocorre erro?
+        this.dataPedido = String.valueOf(geradorData.getDayOfMonth() +"/"+ geradorData.getMonthValue() +"/"+  geradorData.getYear()); //Ordem da data incorreta!!! Talvez ValueOfString? SIM, FEITO EM PRINCIPAL!! Corrigida.
+        this.idPedido = idGerador.nextInt(1000)+1; //Valor inicial sem a valiidação. Em tese.
         this.estado = ("Em configuração..."); //Pode mudar.
         this.precoTotalPedido = 0d;
         

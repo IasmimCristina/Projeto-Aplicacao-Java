@@ -50,6 +50,7 @@ public class TelasIniciaisController implements ITelaInicial{
     
     public static void voltarTelaCadasrar(){
         viewCadastrar.setVisible(false);
+        helperCadastrar.limparTelaCadastrar();
         viewInicial.setVisible(true);
     }
     
@@ -79,24 +80,31 @@ public class TelasIniciaisController implements ITelaInicial{
     // Configuração do cadastro   
     
         
-
     @Override
-    public Cliente cadastrar() { //Método estático também? Usaremos o cleinte depois.
+    public void cadastrar(){
+    //Modifique a interface!
+}
+    
+    public static void cadastrarUsuario() { //Método estático também? Usaremos o cleinte depois.
         //Fazer as validações necessárias.
         //Pegar novo cliente.
         //Ir para a tela usuário.
-        Cliente cliente = helperCadastrar.obterClienteDaTelaCadastrar();
-        helperCadastrar.definirClienteNaTelaCadastrar(cliente);
+        if (helperCadastrar.validarDadosTelaCadastrar() == true) {
+            Cliente clienteUsuario = helperCadastrar.obterClienteDaTelaCadastrar();
+            helperCadastrar.definirClienteNaTelaCadastrar(clienteUsuario);
+            viewCadastrar.dispose();
+            viewUsuario.setVisible(true);
+            //Abrir a tela do usuário. Use dispose!!
+        }
+        
+        
         //Parei aqui: obtive o cliente (sem validações) da tela.
         //Fazer: validações, criar e validar a entrada do usuário exibir a tela do usuário
         //Ainda estou efetuando o cadastro e entrada.
-        
-
-        
+             
         
         
         
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

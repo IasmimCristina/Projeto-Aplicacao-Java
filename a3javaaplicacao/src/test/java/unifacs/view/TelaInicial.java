@@ -4,37 +4,49 @@
  */
 package unifacs.view;
 
+import java.util.ArrayList;
 import unifacs.controller.TelasIniciaisController;
+import unifacs.model.Cliente;
 
 /**
  *
  * @author YellowRed
  */
 public class TelaInicial extends javax.swing.JFrame {
+
     private final TelaCadastrar viewCadastrar;
     private final TelaEntrar viewEntrar;
     private final TelaEsqueceuSenha viewEsqueceuSenha;
     private final TelaUsuario viewUsuario;
     private final TelasIniciaisController controller;
-   
+    //private ArrayList<Cliente> listaClientesCadastrados;
+    //private Cliente usuario;
+
     //Fazer a validação da criação do cliente.
     //Criar clientes já cadastrados para testar a validação dos clientes criados.
     //Eles possuirão listas de pedidos vazias inicialmente.
-    //Testar detalhes da classe Pedido na classe Principal.
-
+    //Testar detalhes da classe Pedido na classe Principal.[V]
     /**
      * Creates new form TelaInicial
      */
-    public TelaInicial() {       
-         initComponents();
-         this.viewCadastrar = new TelaCadastrar(); 
-         this.viewEntrar = new TelaEntrar();        
-         this.viewEsqueceuSenha = new TelaEsqueceuSenha();
-         this.viewUsuario = new TelaUsuario();
-         this.controller = new TelasIniciaisController(this,this.viewCadastrar,this.viewEntrar,this.viewEsqueceuSenha,this.viewUsuario);
-         //Métodos ou funções estáticas
+    public TelaInicial() {
+        initComponents();
+        this.viewCadastrar = new TelaCadastrar();
+        this.viewEntrar = new TelaEntrar();
+        this.viewEsqueceuSenha = new TelaEsqueceuSenha();
+        this.viewUsuario = new TelaUsuario();
+        this.controller = new TelasIniciaisController(this, this.viewCadastrar, this.viewEntrar, this.viewEsqueceuSenha, this.viewUsuario);
+        //Métodos ou funções estáticas
+        //Exemplos de 10 clientes cadastrados:
+        //this.listaClientesCadastrados = new ArrayList<>();
+        //usuario = new Cliente Será feito quando já houver a configuração do pedido.
+                
+    //listaClientesCadastrados.add()
          
 
+    
+    
+    
     }
 
     /**
@@ -191,7 +203,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jbCadastrarseInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarseInicialActionPerformed
         // TODO add your handling code here:
         this.controller.exibirTelaCadastro();
-        
+
     }//GEN-LAST:event_jbCadastrarseInicialActionPerformed
 
     private void jbEntrarInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarInicialActionPerformed

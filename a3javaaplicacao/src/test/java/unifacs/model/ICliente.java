@@ -14,7 +14,6 @@ public interface ICliente {
     Pedido fazerPedido(Pedido pedido);
     void modificarConta(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone);//Quase todos os atributos. Várias funções?
     void excluirConta();
-    void configurarPagamento(String cartaoCredito, String cartaoDebito);
     
 
 }
