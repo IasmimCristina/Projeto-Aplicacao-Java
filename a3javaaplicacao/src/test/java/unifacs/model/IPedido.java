@@ -9,6 +9,7 @@ package unifacs.model;
  * @author YellowRed
  */
 public interface IPedido {
+    //Validar ID!!
     void removerProduto();
     void adicionarProduto();
     void removerTodos();

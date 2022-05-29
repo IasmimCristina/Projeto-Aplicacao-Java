@@ -4,6 +4,7 @@
  */
 package unifacs.controller;
 
+import javax.swing.JOptionPane;
 import unifacs.model.ICliente;
 import unifacs.model.Pedido;
 import unifacs.view.JIFazerPedido;
@@ -22,10 +23,12 @@ public class TelaUsuarioController implements ICliente {
     //Sabor Estrangeiro e Tempero Baiano
     private static TelaUsuario viewUsuario;
     private static JITelaVisualizarConta viewVisualizarConta;
-    private  static JITelaPedidoRestaurante1 viewPedidoRestaurante1;
-    private  static JITelaPedidoRestaurante2 viewPedidoRestaurante2;
+    private static JITelaPedidoRestaurante1 viewPedidoRestaurante1;
+    private static JITelaPedidoRestaurante2 viewPedidoRestaurante2;
     private static JITelaPagamento viewTelaPagamento;
     private static JIFazerPedido viewFazerPedido;
+    private static boolean botaoFazerPedidoSelecionado;
+    private static boolean botaoVisualizarContaSelecionado;
 
     public TelaUsuarioController(TelaUsuario viewUsuario, JITelaVisualizarConta viewVisualizarConta, JITelaPedidoRestaurante1 viewPedidoRestaurante1, JITelaPedidoRestaurante2 viewPedidoRestaurante2, JITelaPagamento viewTelaPagamento, JIFazerPedido viewFazerPedido) {
         this.viewUsuario = viewUsuario;
@@ -34,23 +37,104 @@ public class TelaUsuarioController implements ICliente {
         this.viewPedidoRestaurante2 = viewPedidoRestaurante2;
         this.viewTelaPagamento = viewTelaPagamento;
         this.viewFazerPedido = viewFazerPedido;
+        this.botaoFazerPedidoSelecionado = false;
+        this.botaoVisualizarContaSelecionado = false;
     }
 
-   
     //Exibição das telas:
-    
-    public static void abrirTelaFazerPedido(){
-        viewUsuario.getjAreaDeTrabalho().add(viewFazerPedido);
-        viewFazerPedido.setVisible(true);
-        boolean telaFazerPedidoAberta = true;
-                //Criando os métodos para a tela usuário. Usando os métodos já criados e fazendo validações.
+    public static void abrirTelaFazerPedido() {
+        if (botaoFazerPedidoSelecionado == false) {
+            botaoFazerPedidoSelecionado = true;
+            viewUsuario.getjAreaDeTrabalho().add(viewFazerPedido);
+            viewFazerPedido.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(viewUsuario, "Um pedido já está em configuração!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        }
+
+        //Criando os métodos para a tela usuário. Usando os métodos já criados e fazendo validações.
     }
+
+    //Configuração do pedido - Métodos
+    //Terá ligação co as funções da classe Pedido.
     
-    public static void abrirTelaVisualizarConta(){
-        viewUsuario.getjAreaDeTrabalho().add(viewVisualizarConta);
-        viewVisualizarConta.setVisible(true);
+    //Saída - Métodos
+    public static void sairDoFastLunch() {
+        //Nada será salvo!
     }
-    
+
+    public static void sairDurantePedido() {
+
+    }
+
+    //Cancelamento - Métodos
+    public static void cancelarPedidoPago() {
+
+    }
+
+    public static void cancelarPedidoNaoPago() {
+
+    }
+
+    //Seleção de pedidos - Métodos
+    public static void visualizarPedidoSelecionado() {
+
+    }
+
+    //Exibição - Métodos
+    public static void abrirTelaVisualizarConta() {
+        if (botaoVisualizarContaSelecionado == false) {
+            if (botaoFazerPedidoSelecionado == false) {
+                viewUsuario.getjAreaDeTrabalho().add(viewVisualizarConta);
+                viewVisualizarConta.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(viewUsuario, "Uma conta não pode ser modificada enquanto um pedido está em configuração.", "Erro!", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(viewUsuario, "Você já está visualizando as informações da sua conta.", "Aviso!", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+    }
+
+    public static void abrirTelaRestaurante1() {
+
+    }
+
+    public static void abrirTelaRestaurante2() {
+
+    }
+
+    public static void abrirTelaPagamento() {
+
+    }
+
+    public static void efetuarPagamento() {
+
+    }
+
+    public static void efetuarPagamentoEntrega() {
+
+    }
+
+    public static void efetuarPagamentoPix() {
+
+    }
+
+    public static void efetuarPagamentoCDebito() {
+
+    }
+
+    public static void efetuarPagamentoCCredito() {
+
+    }
+
+    public static void excluirContaUsuario() {
+
+    }
+
+    public static void desconectarContaUsuario() {
+
+    }
 
     @Override
     public Pedido fazerPedido(Pedido pedido) {
