@@ -365,12 +365,12 @@ public class TelaCadastrar extends javax.swing.JFrame {
 
     private void jbCadastrarSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarSeActionPerformed
         // Butão que cadastra o usuário.
-        this.controller.cadastrarUsuario();
+        controller.cadastrarUsuario();
     }//GEN-LAST:event_jbCadastrarSeActionPerformed
 
     private void jbVoltarCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarCadastrarActionPerformed
         // Voltar para a tela inicial.
-        this.controller.voltarTelaCadasrar();
+        controller.voltarTelaCadasrar();
 
     }//GEN-LAST:event_jbVoltarCadastrarActionPerformed
 

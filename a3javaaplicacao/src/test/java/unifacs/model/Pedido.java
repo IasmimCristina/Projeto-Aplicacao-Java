@@ -33,7 +33,7 @@ public class Pedido implements IPedido  {
         //Random?               
         this.dataPedido = String.valueOf(geradorData.getDayOfMonth() +"/"+ geradorData.getMonthValue() +"/"+  geradorData.getYear()); //Ordem da data incorreta!!! Talvez ValueOfString? SIM, FEITO EM PRINCIPAL!! Corrigida.
         this.idPedido = idGerador.nextInt(1000)+1; //Valor inicial sem a valiidação. Em tese.
-        this.estado = ("Em configuração..."); //Pode mudar.
+        this.estado = ("Em configuração..."); //Pode mudar. Sendo preparado, a caminho,  cancelado.
         this.precoTotalPedido = 0d;
         
     }

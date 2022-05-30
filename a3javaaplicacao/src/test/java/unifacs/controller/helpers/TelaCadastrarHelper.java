@@ -119,17 +119,16 @@ public class TelaCadastrarHelper {
         //Validação não é feita aqui!!
 
         String nomeCompleto = String.valueOf(viewCadastrar.getjTCadastrarNomeCompleto().getText().trim());
-        String nomeUsuario = String.valueOf(viewCadastrar.getJtCadastrarNomeUsuario().getText().trim());
-        //Validar email! -Cheque com contains
+        String nomeUsuario = String.valueOf(viewCadastrar.getJtCadastrarNomeUsuario().getText().trim());        
         String email = String.valueOf(viewCadastrar.getjTCadastrarEmail().getText().trim());//Testarei na classe Principal. Resultado: positivo.
-        String senha = new String(viewCadastrar.getjPCadastrarSenha().getPassword()).trim();
-        //A senha pode ser de qualquer tamanho.
+        String senha = new String(viewCadastrar.getjPCadastrarSenha().getPassword()).trim();        
         String cpf = String.valueOf(viewCadastrar.getJtCadastrarCPF().getText().trim());
         String numTel = String.valueOf(viewCadastrar.getJtCadastrarNumTel().getText().trim());
         LinkedList<Pedido> pedidosCliente = new LinkedList<>();
 
-        //Obtenção do cliente: 
-        Cliente clienteCadastrado = new Cliente(nomeCompleto, nomeUsuario, email, senha, cpf, numTel, pedidosCliente);
+        //Obtenção do cliente:
+        Cliente clienteCadastrado;
+        clienteCadastrado = new Cliente(nomeCompleto, nomeUsuario, email, senha, cpf, numTel, pedidosCliente);
 
         return clienteCadastrado;
     }

@@ -4,6 +4,7 @@
  */
 package unifacs.view;
 
+import unifacs.controller.TelaUsuarioController;
 import unifacs.controller.TelasIniciaisController;
 
 /**
@@ -293,7 +294,7 @@ public class TelaEsqueceuSenha extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEntrarNovamenteActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        System.exit(0);
+        TelaUsuarioController.sairDoFastLunch();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jTCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoActionPerformed

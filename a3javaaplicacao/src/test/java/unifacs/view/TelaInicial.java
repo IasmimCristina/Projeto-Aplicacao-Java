@@ -5,6 +5,7 @@
 package unifacs.view;
 
 import java.util.ArrayList;
+import unifacs.controller.TelaUsuarioController;
 import unifacs.controller.TelasIniciaisController;
 import unifacs.model.Cliente;
 
@@ -35,7 +36,7 @@ public class TelaInicial extends javax.swing.JFrame {
         this.viewEntrar = new TelaEntrar();
         this.viewEsqueceuSenha = new TelaEsqueceuSenha();
         this.viewUsuario = new TelaUsuario();
-        this.controller = new TelasIniciaisController(this, this.viewCadastrar, this.viewEntrar, this.viewEsqueceuSenha, this.viewUsuario);
+        this.controller = new TelasIniciaisController(this, this.viewCadastrar, this.viewEntrar, this.viewEsqueceuSenha,viewUsuario);
         //Métodos ou funções estáticas
         //Exemplos de 10 clientes cadastrados:
         //this.listaClientesCadastrados = new ArrayList<>();
@@ -212,7 +213,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEntrarInicialActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        System.exit(0);
+        TelaUsuarioController.sairDoFastLunch();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

@@ -5,7 +5,9 @@
 package unifacs.view;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
 import unifacs.controller.TelaUsuarioController;
+import unifacs.model.Cliente;
 
 /**
  *
@@ -13,29 +15,41 @@ import unifacs.controller.TelaUsuarioController;
  */
 public class TelaUsuario extends javax.swing.JFrame {
 
-    //Telas internas da aplicação.
-    private final JITelaVisualizarConta viewVisualizarConta;
-    private final JIFazerPedido viewFazerPedido;
-    private final JITelaPedidoRestaurante1 viewPedidoRestaurante1;
-    private final JITelaPedidoRestaurante2 viewPedidoRestaurante2;
-    private final JITelaPagamento viewTelaPagamento;
+    //Cliente:
+    private Cliente clienteUsuario = new Cliente();
+    //Telas internas da aplicação.    
+    private JIFazerPedido viewFazerPedido;
+    private JITelaPedidoRestaurante1 viewPedidoRestaurante1;
+    private JITelaPedidoRestaurante2 viewPedidoRestaurante2;
+    private JITelaPagamento viewTelaPagamento;
+    private JITelaVisualizarConta viewVisualizarConta;
+
     //Controller:
-    private final TelaUsuarioController controller;
+    private TelaUsuarioController controller;
     // Ganhar uma variável que dirá que o restaurante 1 deve abrir a tela Fazer pedido deve ser fechada.
-    
+
     /**
      * Creates new form TelaUsuario
+     *
      */
+    //Construtor para testes:
     public TelaUsuario() {
+
+    }
+
+    public TelaUsuario(Cliente clienteUsuario) {
         initComponents();
-        this.viewVisualizarConta = new JITelaVisualizarConta();
+        this.clienteUsuario = clienteUsuario;
         this.viewFazerPedido = new JIFazerPedido();
         this.viewPedidoRestaurante1 = new JITelaPedidoRestaurante1();
         this.viewPedidoRestaurante2 = new JITelaPedidoRestaurante2();
         this.viewTelaPagamento = new JITelaPagamento();
-        this.controller = new TelaUsuarioController(this, viewVisualizarConta, viewPedidoRestaurante1, viewPedidoRestaurante2, viewTelaPagamento, viewFazerPedido);
+        this.viewVisualizarConta = new JITelaVisualizarConta();
+
+        this.controller = new TelaUsuarioController(clienteUsuario, this, viewVisualizarConta, viewPedidoRestaurante1, viewPedidoRestaurante2, viewTelaPagamento, viewFazerPedido);
+
+        setExtendedState(MAXIMIZED_BOTH);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,10 +60,9 @@ public class TelaUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jlNomeUsuarioTelaUsuario = new javax.swing.JLabel();
+        jlSaudacao = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTabelaPedidos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -61,11 +74,11 @@ public class TelaUsuario extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jmDesconectarConta = new javax.swing.JMenuItem();
         jmExcluirConta = new javax.swing.JMenuItem();
-
-        jMenuItem3.setText("jMenuItem3");
+        jmSairFastLunch = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Minha área");
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1100, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -73,10 +86,20 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 0));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
-        jlNomeUsuarioTelaUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jlNomeUsuarioTelaUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        jlNomeUsuarioTelaUsuario.setText("Olá, Nome do usuário!");
+        jlSaudacao.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jlSaudacao.setForeground(new java.awt.Color(255, 255, 255));
+        jlSaudacao.setText("Olá, faça um pedido! ");
+        jlSaudacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlSaudacaoMouseClicked(evt);
+            }
+        });
 
         jtTabelaPedidos.setBackground(new java.awt.Color(153, 102, 0));
         jtTabelaPedidos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "- Lista de pedidos -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(102, 51, 0))); // NOI18N
@@ -118,37 +141,42 @@ public class TelaUsuario extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jlNomeUsuarioTelaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jlSaudacao, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jlNomeUsuarioTelaUsuario)
-                .addGap(23, 23, 23)
+                .addGap(43, 43, 43)
+                .addComponent(jlSaudacao)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         jLabel4.setIcon(new javax.swing.ImageIcon("D:\\estudos\\gitGithubInstalacoes\\projetosPessoais\\Projeto-Aplicacao-Java\\a3javaaplicacao\\src\\test\\java\\unifacs\\view\\images\\background\\backgroundOficialUsuario.png")); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jAreaDeTrabalho.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -185,7 +213,8 @@ public class TelaUsuario extends javax.swing.JFrame {
         jmVisualizarConta.setBackground(new java.awt.Color(0, 0, 0));
         jmVisualizarConta.setBorder(null);
         jmVisualizarConta.setForeground(new java.awt.Color(0, 0, 0));
-        jmVisualizarConta.setText("\nMinha conta\n");
+        jmVisualizarConta.setText(" Opções");
+        jmVisualizarConta.setActionCommand("Minha conta");
         jmVisualizarConta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jmVisualizarConta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jmVisualizarConta.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -199,10 +228,28 @@ public class TelaUsuario extends javax.swing.JFrame {
         jmVisualizarConta.add(jMenuItem1);
 
         jmDesconectarConta.setText("Desconectar conta");
+        jmDesconectarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmDesconectarContaActionPerformed(evt);
+            }
+        });
         jmVisualizarConta.add(jmDesconectarConta);
 
         jmExcluirConta.setText("Excluir conta");
+        jmExcluirConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmExcluirContaActionPerformed(evt);
+            }
+        });
         jmVisualizarConta.add(jmExcluirConta);
+
+        jmSairFastLunch.setText("Sair");
+        jmSairFastLunch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSairFastLunchActionPerformed(evt);
+            }
+        });
+        jmVisualizarConta.add(jmSairFastLunch);
 
         jmBarraMenu.add(jmVisualizarConta);
 
@@ -225,19 +272,54 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        //Aqui        
-        jAreaDeTrabalho.add(viewVisualizarConta);
-        viewVisualizarConta.setVisible(true);
+        //Aqui 
+
+        controller.abrirTelaVisualizarConta();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jbFazerUmPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFazerUmPedidoActionPerformed
         // TODO add your handling code here:
-        
-        jAreaDeTrabalho.add(viewFazerPedido);
-        viewFazerPedido.setVisible(true);
+
+        controller.abrirTelaFazerPedido();
         //Crie uma condição que faça com que os outras  JI apareçam.
-        
+
     }//GEN-LAST:event_jbFazerUmPedidoActionPerformed
+
+    private void jmSairFastLunchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSairFastLunchActionPerformed
+        // TODO add your handling code here:
+        //Sair do aplicativo.
+        controller.sairDoFastLunch();
+    }//GEN-LAST:event_jmSairFastLunchActionPerformed
+
+    private void jmExcluirContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmExcluirContaActionPerformed
+        //Excluir conta:
+        controller.excluirContaUsuario();
+
+    }//GEN-LAST:event_jmExcluirContaActionPerformed
+
+    private void jmDesconectarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDesconectarContaActionPerformed
+        // Desconectar conta: apenas sair da tela usuário, porém o cliente cadastrado ainda existe.
+        controller.desconectarContaUsuario();
+    }//GEN-LAST:event_jmDesconectarContaActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        //AQUI
+        controller.darSaudacaoUsuario();
+
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jlSaudacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSaudacaoMouseClicked
+        // TODO add your handling code here:
+        controller.darSaudacaoUsuario();
+
+    }//GEN-LAST:event_jlSaudacaoMouseClicked
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+        controller.darSaudacaoUsuario();
+
+    }//GEN-LAST:event_jPanel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -279,32 +361,42 @@ public class TelaUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbFazerUmPedido;
-    private javax.swing.JLabel jlNomeUsuarioTelaUsuario;
+    private javax.swing.JLabel jlSaudacao;
     private javax.swing.JMenuBar jmBarraMenu;
     private javax.swing.JMenuItem jmDesconectarConta;
     private javax.swing.JMenuItem jmExcluirConta;
+    private javax.swing.JMenuItem jmSairFastLunch;
     private javax.swing.JMenu jmVisualizarConta;
     private javax.swing.JTable jtTabelaPedidos;
     // End of variables declaration//GEN-END:variables
 
-   
-
     //Getters e setters usados:
-    
-    
-    
-     public JDesktopPane getjAreaDeTrabalho() {
+    public JDesktopPane getjAreaDeTrabalho() {
         return jAreaDeTrabalho;
     }
 
     public void setjAreaDeTrabalho(JDesktopPane jAreaDeTrabalho) {
         this.jAreaDeTrabalho = jAreaDeTrabalho;
     }
-    
-    
+
+    public JLabel getJlSaudacao() {
+        return jlSaudacao;
+    }
+
+    public void setJlSaudacao(JLabel jlSaudacao) {
+        this.jlSaudacao = jlSaudacao;
+    }
+
+    public Cliente getClienteUsuario() {
+        return clienteUsuario;
+    }
+
+    public void setClienteUsuario(Cliente clienteUsuario) {
+        this.clienteUsuario = clienteUsuario;
+    }
+
 }

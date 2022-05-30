@@ -20,15 +20,17 @@ import unifacs.view.TelaUsuario;
  * @author YellowRed
  */
 public class TelasIniciaisController implements ITelaInicial{
+    private static Cliente clienteUsuario;
     private static  TelaInicial viewInicial;
     private static TelaCadastrar viewCadastrar;
     private static TelaEntrar viewEntrar;
     private static TelaEsqueceuSenha viewEsqueceuSenha;
-    private static TelaUsuario viewUsuario;
+    //private static TelaUsuario viewUsuario;
     private static TelaCadastrarHelper helperCadastrar;//Continuará com o nome helper caso utilizemos apenas m helper neste controller.
+    private static TelaUsuario viewUsuario;
 
     //Construtor para tela inicial
-    public TelasIniciaisController(TelaInicial viewInicial, TelaCadastrar viewCadastrar, TelaEntrar viewEntrar, TelaEsqueceuSenha viewEsqueceuSenha, TelaUsuario viewUsuario) {
+    public TelasIniciaisController(TelaInicial viewInicial, TelaCadastrar viewCadastrar, TelaEntrar viewEntrar, TelaEsqueceuSenha viewEsqueceuSenha,TelaUsuario viewUsuario) {
         this.viewInicial = viewInicial;
         this.viewCadastrar = viewCadastrar;
         this.viewEntrar = viewEntrar;
@@ -40,6 +42,12 @@ public class TelasIniciaisController implements ITelaInicial{
     }
   
   
+    //Saída - Métodos
+    
+    public static void sairDoFastLunch() {
+        //Nada será salvo!
+    }
+    
     //Fazer as funções de exibição das telas.
     
     //Configuração das telas - Voltar
@@ -62,6 +70,11 @@ public class TelasIniciaisController implements ITelaInicial{
         
     
     // Configuração das telas - Exibição
+    
+    public static void exibirTelaInicial(){
+        viewInicial.setVisible(true);
+    }
+    
     public static void exibirTelaCadastro(){
         viewInicial.setVisible(false);
         viewCadastrar.setVisible(true);
@@ -90,10 +103,13 @@ public class TelasIniciaisController implements ITelaInicial{
         //Pegar novo cliente.
         //Ir para a tela usuário.
         if (helperCadastrar.validarDadosTelaCadastrar() == true) {
-            Cliente clienteUsuario = helperCadastrar.obterClienteDaTelaCadastrar();
+            
+            clienteUsuario = new Cliente();
+            clienteUsuario = helperCadastrar.obterClienteDaTelaCadastrar();
             helperCadastrar.definirClienteNaTelaCadastrar(clienteUsuario);
             viewCadastrar.dispose();
-            viewUsuario.setVisible(true);
+            viewUsuario = new TelaUsuario(clienteUsuario); //Talvez comente para testes!!
+            viewUsuario.setVisible(true);  //Estarão ligados? Os controllers?
             //Abrir a tela do usuário. Use dispose!!
         }
         
