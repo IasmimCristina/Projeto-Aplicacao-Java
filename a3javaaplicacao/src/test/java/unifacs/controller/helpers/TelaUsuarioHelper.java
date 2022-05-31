@@ -25,5 +25,11 @@ public class TelaUsuarioHelper {
     }
     
     
+    public void exibirListaPedidos(String idPedido, String dataPedido){
+        String pedido = ("Pedido -"+idPedido+"-"+dataPedido);
+        viewUsuario.getjComboBoxPedidos().addItem(pedido);
+    }
+    
+    
     
 }

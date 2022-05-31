@@ -4,6 +4,9 @@
  */
 package unifacs.view;
 
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import unifacs.controller.TelaUsuarioController;
 import unifacs.controller.TelasIniciaisController;
 
@@ -274,6 +277,7 @@ public class TelaEntrar extends javax.swing.JFrame {
 
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
         // TODO add your handling code here:
+        this.controller.entrarUsuario();
     }//GEN-LAST:event_jbEntrarActionPerformed
 
     private void jlSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSairMouseClicked
@@ -349,4 +353,41 @@ public class TelaEntrar extends javax.swing.JFrame {
     private javax.swing.JButton jbVoltarEntrar;
     private javax.swing.JLabel jlSair;
     // End of variables declaration//GEN-END:variables
+
+    public JPasswordField getjPEntrarSenha() {
+        return jPEntrarSenha;
+    }
+
+    public void setjPEntrarSenha(JPasswordField jPEntrarSenha) {
+        this.jPEntrarSenha = jPEntrarSenha;
+    }
+
+    public JTextField getjTEntrarEmail() {
+        return jTEntrarEmail;
+    }
+
+    public void setjTEntrarEmail(JTextField jTEntrarEmail) {
+        this.jTEntrarEmail = jTEntrarEmail;
+    }
+
+    public JButton getJbEntrar() {
+        return jbEntrar;
+    }
+
+    public void setJbEntrar(JButton jbEntrar) {
+        this.jbEntrar = jbEntrar;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

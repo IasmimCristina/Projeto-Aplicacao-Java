@@ -5,9 +5,14 @@
 package unifacs.view;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import unifacs.controller.TelaUsuarioController;
 import unifacs.controller.TelasIniciaisController;
 import unifacs.model.Cliente;
+import unifacs.model.Pedido;
+import unifacs.model.Refeicao;
+import unifacs.model.RestauranteBr;
+import unifacs.model.RestauranteInternacional;
 
 /**
  *
@@ -20,9 +25,15 @@ public class TelaInicial extends javax.swing.JFrame {
     private final TelaEsqueceuSenha viewEsqueceuSenha;
     private final TelaUsuario viewUsuario;
     private final TelasIniciaisController controller;
-    //private ArrayList<Cliente> listaClientesCadastrados;
-    //private Cliente usuario;
 
+    private ArrayList<Cliente> listaClientesCadastrados = new ArrayList<>();
+
+    /*
+    private Cliente usuario; 
+    private LinkedList<Pedido> pedidosCliente = new LinkedList<>();
+    private Pedido pedido;    
+    private Refeicao refeicao;
+     */
     //Fazer a validação da criação do cliente.
     //Criar clientes já cadastrados para testar a validação dos clientes criados.
     //Eles possuirão listas de pedidos vazias inicialmente.
@@ -36,18 +47,562 @@ public class TelaInicial extends javax.swing.JFrame {
         this.viewEntrar = new TelaEntrar();
         this.viewEsqueceuSenha = new TelaEsqueceuSenha();
         this.viewUsuario = new TelaUsuario();
-        this.controller = new TelasIniciaisController(this, this.viewCadastrar, this.viewEntrar, this.viewEsqueceuSenha,viewUsuario);
-        //Métodos ou funções estáticas
-        //Exemplos de 10 clientes cadastrados:
-        //this.listaClientesCadastrados = new ArrayList<>();
-        //usuario = new Cliente Será feito quando já houver a configuração do pedido.
-                
-    //listaClientesCadastrados.add()
-         
+        this.controller = new TelasIniciaisController(this, this.viewCadastrar, this.viewEntrar, this.viewEsqueceuSenha, viewUsuario);
 
-    
-    
-    
+        //Exemplos de 10 clientes cadastrados:      
+        //Classes  necessárias:
+        RestauranteBr temperoBaiano = new RestauranteBr();
+        RestauranteInternacional saborEstrangeiro = new RestauranteInternacional();
+        Cliente usuario;
+        LinkedList<Pedido> pedidosCliente = new LinkedList<>();
+        ArrayList<Refeicao> produtosEscolhidos = new ArrayList<>();
+        Pedido pedido;
+        Refeicao refeicao;
+        
+
+        
+        //Novo cliente abaixo: 00
+
+        //Configuração do pedido:
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(2);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(4);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(2);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(2);
+        produtosEscolhidos.add(refeicao);
+        usuario = new Cliente("Anna Sila dos Santos", "Ann", "anaaaa@gmail.com", "123456", "111111111", "12121212", pedidosCliente);
+        pedido = new Pedido(usuario, "Tempero Baiano");
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Durante a entrega.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido);
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(8);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(8);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(8);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(3);
+        produtosEscolhidos.add(refeicao);
+
+        //Configuração do pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); 
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        
+        
+        
+        
+        //Novo cliente abaixo: 01
+
+        //Configuração do pedido:
+        //Produtos escolhidos:
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(4);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(1);
+        produtosEscolhidos.add(refeicao);        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Bob Sila d", "Bobby", "bbbbb@gmail.com", "123456", "22222", "12121212", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Durante a entrega.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido);  
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+         //Novo cliente abaixo: 02
+
+        //Configuração do pedido:
+        //Produtos escolhidos:
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(6);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(5);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(4);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(5);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(5);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(6);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(5);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Brunn", "Bobby Brown", "cccccc@gmail.com", "12", "333333", "12121212", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Durante a entrega.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido);        
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(4);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Cancelado.");
+        pedido.setTipoPagamento("Cartão de crédito.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido);        
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(2);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(5);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Cartão de crédito.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); 
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        //Novo cliente abaixo: 03
+
+        //Configuração do pedido:
+        //Produtos escolhidos:      
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Sila d", "Sister", "cccc@gmail.com", "123456", "33333", "12121212", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");        
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido);
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");        
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(1);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Cancelado.");
+        pedido.setTipoPagamento("Cartão de crédito.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");        
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(5);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); 
+        listaClientesCadastrados.add(usuario);
+
+        
+        //Novo cliente abaixo:
+
+        //Configuração do pedido: 04
+        //Produtos escolhidos:        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Kevin", "Kev", "ddd@gmail.com", "123456", "33333", "12121212", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);   
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        //Novo cliente abaixo: 05
+
+        //Configuração do pedido:
+        //Produtos escolhidos:        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(6);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(4);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Teste", "Test", "teste@gmail.com", "123456", "1111", "1111", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido); 
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        
+        
+        //Novo cliente abaixo: 06
+
+        //Configuração do pedido:
+        //Produtos escolhidos:        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Teste02", "Test2", "teste2@gmail.com", "123456", "1111", "1111", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Cartão de credito.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido); 
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");        
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(1);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Cancelado.");
+        pedido.setTipoPagamento("Cartão de crédito.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");        
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(3);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); 
+        //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");        
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(2);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Cancelado.");
+        pedido.setTipoPagamento("Cartão de crédito.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); //Outro pedido.
+        pedido = new Pedido(usuario, "Sabor Estrangeiro");        
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(4);
+        produtosEscolhidos.add(refeicao);     
+        //Configuração do outro pedido
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        pedidosCliente.add(pedido); 
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        
+        //Novo cliente abaixo: 07
+
+        //Configuração do pedido:
+        //Produtos escolhidos:        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(1);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Teste3", "Testy", "teste3@gmail.com", "123456", "1111", "1111", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Cancelado.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        //Novo cliente abaixo: 08
+
+        //Configuração do pedido:
+        //Produtos escolhidos:        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Akemi", "Sister", "cccc@gmail.com", "123456", "33333", "12121212", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);   
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        //Novo cliente abaixo: 09
+
+        //Configuração do pedido:
+        //Produtos escolhidos:        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Juliana", "Jully", "cccc@gmail.com", "123456", "33333", "12121212", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Sendo preparado");
+        pedido.setTipoPagamento("Por Pix.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);
+        listaClientesCadastrados.add(usuario);
+
+        
+        
+        //Novo cliente abaixo: 10
+
+        //Configuração do pedido:
+        //Produtos escolhidos:        
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(1);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        refeicao = temperoBaiano.getCardapioLanches().get(3);
+        produtosEscolhidos.add(refeicao);
+        //Uma nova lista de pedidos:
+        pedidosCliente = new LinkedList<>();
+        //Um novo usuario:
+        usuario = new Cliente("Ultimo", "Ulty", "ultimo@gmail.com", "123456", "1111", "1111", pedidosCliente);
+        //Um novo pedido com as configurações definidas.
+        pedido = new Pedido(usuario, "Tempero Baiano");        
+        pedido.setProdutosEscolhidos(produtosEscolhidos);
+        pedido.setEstado("Entregue.");
+        pedido.setTipoPagamento("Durante a entrega.");
+        pedido.definirPrecoEQtd(produtosEscolhidos);
+        //Adição do pedido ao cliente:        
+        pedidosCliente.add(pedido);
+        listaClientesCadastrados.add(usuario);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
     }
 
     /**
@@ -260,4 +815,17 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jbEntrarInicial;
     private javax.swing.JLabel jlSair;
     // End of variables declaration//GEN-END:variables
+
+    public ArrayList<Cliente> getListaClientesCadastrados() {
+        return listaClientesCadastrados;
+    }
+
+    public void setListaClientesCadastrados(ArrayList<Cliente> listaClientesCadastrados) {
+        this.listaClientesCadastrados = listaClientesCadastrados;
+    }
+
+
+
+
+
 }

@@ -18,12 +18,13 @@ public class TelaVisualizarContaHelper {
         this.viewVisualizarConta = viewVisualizarConta;
     }
 
-    public void infoUsuarioNaTela(String nomeUsuario, String nomeCompleto, String email, String cpf, String numTel) {
+    public void infoUsuarioNaTela(String nomeUsuario, String nomeCompleto, String email, String cpf, String numTel, String numPedidos) {
         this.viewVisualizarConta.getJlNomeUsuario().setText(nomeUsuario);
         this.viewVisualizarConta.getJlNomeCompleto().setText(nomeCompleto);
         this.viewVisualizarConta.getJlEmail().setText(email);
         this.viewVisualizarConta.getJlCPF().setText(cpf);
         this.viewVisualizarConta.getJlNumTel().setText(numTel);
+        this.viewVisualizarConta.getJlNumPedidosUsuario().setText(numPedidos);
 
     }
 

@@ -4,6 +4,7 @@
  */
 package unifacs.view;
 
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -24,6 +25,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     private JITelaPedidoRestaurante2 viewPedidoRestaurante2;
     private JITelaPagamento viewTelaPagamento;
     private JITelaVisualizarConta viewVisualizarConta;
+    //private ArrayList<Cliente> listaClientesCadastrados;
 
     //Controller:
     private TelaUsuarioController controller;
@@ -48,6 +50,9 @@ public class TelaUsuario extends javax.swing.JFrame {
         this.viewVisualizarConta = new JITelaVisualizarConta();
 
         this.controller = new TelaUsuarioController(clienteUsuario, this, viewVisualizarConta, viewPedidoRestaurante1, viewPedidoRestaurante2, viewTelaPagamento, viewFazerPedido);
+        
+        //Preencher tabela
+        controller.preencherListaPedidos();
 
         setExtendedState(MAXIMIZED_BOTH);
     }
@@ -66,7 +71,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jlSaudacao = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jbFazerUmPedido = new javax.swing.JButton();
-        jComboBoxPdts = new javax.swing.JComboBox<>();
+        jComboBoxPedidos = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jAreaDeTrabalho = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
@@ -104,14 +109,14 @@ public class TelaUsuario extends javax.swing.JFrame {
         });
 
         jLabel3.setBackground(new java.awt.Color(51, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 10)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Descontos disponíveis!");
+        jLabel3.setText("Nenhum por enquanto! ;)");
         jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avisos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(255, 204, 51))); // NOI18N
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jbFazerUmPedido.setBackground(new java.awt.Color(255, 255, 255));
-        jbFazerUmPedido.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jbFazerUmPedido.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jbFazerUmPedido.setForeground(new java.awt.Color(102, 51, 0));
         jbFazerUmPedido.setText("Fazer um pedido");
         jbFazerUmPedido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 102, 0), 4));
@@ -121,15 +126,20 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxPdts.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxPdts.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jComboBoxPdts.setForeground(new java.awt.Color(102, 51, 0));
-        jComboBoxPdts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 102, 0), 4));
+        jComboBoxPedidos.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxPedidos.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jComboBoxPedidos.setForeground(new java.awt.Color(102, 51, 0));
+        jComboBoxPedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 102, 0), 4));
+        jComboBoxPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxPedidosMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Lista de pedidos");
+        jLabel5.setText("Lista de pedidos feitos ");
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jLabel5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -137,17 +147,17 @@ public class TelaUsuario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jComboBoxPdts, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jComboBoxPedidos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlSaudacao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jlSaudacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -155,14 +165,14 @@ public class TelaUsuario extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addComponent(jlSaudacao)
-                .addGap(48, 48, 48)
+                .addGap(72, 72, 72)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jComboBoxPdts, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(jbFazerUmPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -179,7 +189,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jAreaDeTrabalho.setLayout(jAreaDeTrabalhoLayout);
         jAreaDeTrabalhoLayout.setHorizontalGroup(
             jAreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1071, Short.MAX_VALUE)
         );
         jAreaDeTrabalhoLayout.setVerticalGroup(
             jAreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,6 +326,11 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPanel2MouseClicked
 
+    private void jComboBoxPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxPedidosMouseClicked
+        // TODO add your handling code here:
+        controller.mostrarDescricaoPedidos();
+    }//GEN-LAST:event_jComboBoxPedidosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -353,7 +368,7 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jAreaDeTrabalho;
-    private javax.swing.JComboBox<Object> jComboBoxPdts;
+    private javax.swing.JComboBox<String> jComboBoxPedidos;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -394,13 +409,15 @@ public class TelaUsuario extends javax.swing.JFrame {
         this.clienteUsuario = clienteUsuario;
     }
 
-    public JComboBox<Object> getjComboBoxPdts() {
-        return jComboBoxPdts;
+    public JComboBox<String> getjComboBoxPedidos() {
+        return jComboBoxPedidos;
     }
 
-    public void setjComboBoxPdts(JComboBox<Object> jComboBoxPdts) {
-        this.jComboBoxPdts = jComboBoxPdts;
+    public void setjComboBoxPedidos(JComboBox<String> jComboBoxPedidos) {
+        this.jComboBoxPedidos = jComboBoxPedidos;
     }
+
+   
 
     
     

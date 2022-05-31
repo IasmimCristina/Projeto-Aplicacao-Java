@@ -7,8 +7,10 @@ package unifacs.controller;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import unifacs.controller.helpers.TelaPagamentoHelper;
 import unifacs.controller.helpers.TelaUsuarioHelper;
 import unifacs.controller.helpers.TelaVisualizarContaHelper;
+import unifacs.controller.helpers.TelasR1R2Helper;
 import unifacs.model.Cliente;
 import unifacs.model.ICliente;
 import unifacs.model.Pedido;
@@ -41,6 +43,7 @@ public class TelaUsuarioController implements ICliente {
     private static TelaUsuario viewUsuario;
 
     private static TelaInicial viewInicial;
+    private static boolean pagamentoDefinido;
     private static boolean botaoFazerPedidoSelecionado;
     private static boolean botaoVisualizarContaSelecionado;
     private static boolean botaoR1Selecionado;
@@ -53,7 +56,7 @@ public class TelaUsuarioController implements ICliente {
     private static RestauranteBr temperoBaiano = new RestauranteBr();
     private static RestauranteInternacional saborEstrangeiro = new RestauranteInternacional();
     private static Refeicao refeicao;
-    private static Pedido pedidoInicial;
+    private static Pedido pedidoInicial = new Pedido();
 
     //Validação da refeição - Restaurante
     private static Integer indicesSelecionadosAlmoco = 0;
@@ -68,6 +71,8 @@ public class TelaUsuarioController implements ICliente {
     //Helpers:
     private static TelaUsuarioHelper helperUsuario;
     private static TelaVisualizarContaHelper helperVisualizarConta;
+    private static TelaPagamentoHelper helperTelaPagamento;
+    private static TelasR1R2Helper helperR1R2;
 
     public TelaUsuarioController(Cliente clienteUsuario, TelaUsuario viewUsuario, JITelaVisualizarConta viewVisualizarConta, JITelaPedidoRestaurante1 viewPedidoRestaurante1, JITelaPedidoRestaurante2 viewPedidoRestaurante2, JITelaPagamento viewTelaPagamento, JIFazerPedido viewFazerPedido) {
         //Cliente usuário virá da tela inixial!
@@ -79,6 +84,7 @@ public class TelaUsuarioController implements ICliente {
         this.viewTelaPagamento = viewTelaPagamento;
         this.viewVisualizarConta = viewVisualizarConta;
         this.viewUsuario = viewUsuario;
+        this.pagamentoDefinido = false;
         this.botaoFazerPedidoSelecionado = false;
         this.botaoVisualizarContaSelecionado = false;
         this.botaoR1Selecionado = false;
@@ -95,6 +101,8 @@ public class TelaUsuarioController implements ICliente {
         //Helpers
         this.helperUsuario = new TelaUsuarioHelper(viewUsuario);
         helperVisualizarConta = new TelaVisualizarContaHelper(viewVisualizarConta);
+        this.helperTelaPagamento = new TelaPagamentoHelper(viewTelaPagamento);
+        this.helperR1R2 = new TelasR1R2Helper(viewPedidoRestaurante1, viewPedidoRestaurante2);
 
     }
 
@@ -108,15 +116,49 @@ public class TelaUsuarioController implements ICliente {
         String email = clienteUsuario.getEmail();
         String cpf = clienteUsuario.getCpf();
         String numTel = clienteUsuario.getNumTelefone();
+        String numPedidos = String.valueOf(clienteUsuario.getNumPedidos());
 
-        helperVisualizarConta.infoUsuarioNaTela(nomeUsuario, nomeCompleto, email, cpf, numTel);
+        helperVisualizarConta.infoUsuarioNaTela(nomeUsuario, nomeCompleto, email, cpf, numTel, numPedidos);
 
     }
 
     public static void darSaudacaoUsuario() {
-        String mensagem = "Olá, " + clienteUsuario.getNomeUsuario() + "!       :D";
+        String mensagem = "Olá, " + clienteUsuario.getNomeUsuario() + "! :D";
         helperUsuario.exibirSaudacao(mensagem);
 
+    }
+
+    //Exibição dos pedidos na tela do usuário.
+    public static void preencherListaPedidos() {
+        if (clienteUsuario.getPedidosCliente().isEmpty()) {           
+            
+        } else{
+        String idPedido = pedidoInicial.getIdPedido();
+        String dataPedido = pedidoInicial.getDataPedido();
+        helperUsuario.exibirListaPedidos(idPedido, dataPedido);
+        }
+       
+    }
+
+    public static void mostrarDescricaoPedidos() {
+        if(clienteUsuario.getPedidosCliente().isEmpty()) {
+            
+        } else if (botaoFazerPedidoSelecionado == false && botaoVisualizarContaSelecionado == false) {
+            Integer indiceP = viewUsuario.getjComboBoxPedidos().getSelectedIndex();
+            Pedido pedidoLocal = clienteUsuario.getPedidosCliente().get(indiceP);
+            String estado = pedidoLocal.getEstado();
+            String restaurante = pedidoLocal.getRestauranteEscolhido();
+            String id = pedidoLocal.getIdPedido();
+            String qtdProdutos = String.valueOf(pedidoLocal.getNumProdutos());
+            String tipoPagamento = pedidoLocal.getTipoPagamento();
+            String precoTotal = String.valueOf(pedidoLocal.getPrecoTotalPedido());            
+
+            JOptionPane.showMessageDialog(viewUsuario, "Pedido -"+id+"-      Quantidade de produtos: "+qtdProdutos+" - Estado: "+estado+".     - Restaurante:"+restaurante+" -     Tipo de pagamento:"+tipoPagamento+" -    Preço total:"+precoTotal+".", "Informações do Pedido -"+id+".", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(viewUsuario, "Você não pode visualizar seus pedidos enquanto outra tela de dados está aberta!", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+        }
     }
 
     //Exibicao de texto - Tabelas - Coloque essas funções antes da tela aparecer!!
@@ -216,14 +258,42 @@ public class TelaUsuarioController implements ICliente {
 
     }
 
+    //Prencher JCombobox da tela de pagamento
+    public static void prepararTelaPagamento() {
+        ArrayList<Refeicao> produtosPagamento = pedidoInicial.getProdutosEscolhidos(); //Cópia feita for referência.
+        helperTelaPagamento.exibirInfoJComboBox(produtosPagamento); //Tudo feito por um helper?
+        String qtdProdutos = String.valueOf(pedidoInicial.getNumProdutos());
+        String precoTotal = String.valueOf(pedidoInicial.getPrecoTotalPedido());
+        helperTelaPagamento.exibirQtdPrecoPagamento(precoTotal, qtdProdutos);
+    }
+
+    //Exibição da quantidade de produtos e preço total na tela
+    public static void exibirQtdPrecoTotal() {
+        //Qtd de produtos selecionados e preço total.        
+
+        //Definição da qtd e  do preço total do pedido atual!
+        pedidoInicial.definirPrecoEQtd(pedidoInicial.getProdutosEscolhidos());
+        String qtdProdutos = String.valueOf(pedidoInicial.getNumProdutos());
+        String precoTotal = String.valueOf(pedidoInicial.getPrecoTotalPedido());
+
+        if (pedidoInicial.getRestauranteEscolhido() == "Tempero Baiano") {
+            helperR1R2.exibirInfoNaTelaPedidoR1(precoTotal, qtdProdutos);
+        } else {
+            helperR1R2.exibirInfoNaTelaPedidoR2(precoTotal, qtdProdutos);
+        }
+        //Helper para exibir na tela.
+        //Usar o tipo de restaurante para diferenciar!
+    }
+
     //Exibição dos produtos selecionados - Métodos
     public static void produtoSelecionadoTAlmoco() {//Sem a quantidade selecionada ainda. Irá se repetir
         //  Adicione o pedido à lista!!
         int indiceL = viewPedidoRestaurante2.getjTabelaAlmoco().getSelectedRow();
         refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(indiceL);
         pedidoInicial.getProdutosEscolhidos().add(refeicao);
-        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho() + " - R$" + String.valueOf(refeicao.getPrecoProduto()));
         viewPedidoRestaurante2.getjComboBoxPdts().addItem(descricao);
+        exibirQtdPrecoTotal();
         //CONTINUAR
         //Use J combo box.       
 
@@ -234,8 +304,9 @@ public class TelaUsuarioController implements ICliente {
         int indiceL = viewPedidoRestaurante2.getjTabelaBebidas().getSelectedRow();
         refeicao = saborEstrangeiro.getCardapioBebidas().get(indiceL);
         pedidoInicial.getProdutosEscolhidos().add(refeicao);
-        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho() + " - R$" + String.valueOf(refeicao.getPrecoProduto()));
         viewPedidoRestaurante2.getjComboBoxPdts().addItem(descricao);
+        exibirQtdPrecoTotal();
         //CONTINUAR
         //Use J combo box.       
 
@@ -246,8 +317,9 @@ public class TelaUsuarioController implements ICliente {
         int indiceL = viewPedidoRestaurante2.getjTabelaPizzas().getSelectedRow();
         refeicao = saborEstrangeiro.getCardapioPizzas().get(indiceL);
         pedidoInicial.getProdutosEscolhidos().add(refeicao);
-        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho() + " - R$" + String.valueOf(refeicao.getPrecoProduto()));
         viewPedidoRestaurante2.getjComboBoxPdts().addItem(descricao);
+        exibirQtdPrecoTotal();
         //CONTINUAR
         //Use J combo box.       
 
@@ -258,8 +330,9 @@ public class TelaUsuarioController implements ICliente {
         int indiceL = viewPedidoRestaurante1.getjTabelaCafeManha().getSelectedRow();
         refeicao = temperoBaiano.getCardapioCafeDaManha().get(indiceL);
         pedidoInicial.getProdutosEscolhidos().add(refeicao);
-        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho() + " - R$" + String.valueOf(refeicao.getPrecoProduto()));
         viewPedidoRestaurante1.getjComboBoxPdts().addItem(descricao);
+        exibirQtdPrecoTotal();
         //CONTINUAR
         //Use J combo box.       
 
@@ -271,8 +344,9 @@ public class TelaUsuarioController implements ICliente {
         indicesSelecionadosBebidasR1++; //Não é mais necessário?
         refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(indiceL);
         pedidoInicial.getProdutosEscolhidos().add(refeicao);
-        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho() + " - R$" + String.valueOf(refeicao.getPrecoProduto()));
         viewPedidoRestaurante1.getjComboBoxPdts().addItem(descricao);
+        exibirQtdPrecoTotal();
         //CONTINUAR
         //Use J combo box.       
 
@@ -284,8 +358,9 @@ public class TelaUsuarioController implements ICliente {
         indicesSelecionadosLanches++; //Não é mais necessário?
         refeicao = temperoBaiano.getCardapioLanches().get(indiceL);
         pedidoInicial.getProdutosEscolhidos().add(refeicao);
-        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho() + " - R$" + String.valueOf(refeicao.getPrecoProduto()));
         viewPedidoRestaurante1.getjComboBoxPdts().addItem(descricao);
+        exibirQtdPrecoTotal();
         //CONTINUAR
         //Use J combo box.       
 
@@ -294,40 +369,39 @@ public class TelaUsuarioController implements ICliente {
     //Remoção = Produtos selecionados
     public static void removerPdtsSelecionadosR1() {//Somente uma função, indices selecionados não funcionará!!
         //  Retire o pedido da lista!!
-        int indiceL = viewPedidoRestaurante1.getjComboBoxPdts().getSelectedIndex();         
-        pedidoInicial.getProdutosEscolhidos().remove(indiceL);        
+        int indiceL = viewPedidoRestaurante1.getjComboBoxPdts().getSelectedIndex();
+        pedidoInicial.getProdutosEscolhidos().remove(indiceL);
         viewPedidoRestaurante1.getjComboBoxPdts().removeItemAt(indiceL);
         //CONTINUAR
+        exibirQtdPrecoTotal();
         //Use J combo box.       
 
     }
-    
-    
+
     public static void removerPdtsSelecionadosR2() {//Somente uma função, indices selecionados não funcionará!!
         //  Retire o pedido da lista!!
-        int indiceL = viewPedidoRestaurante2.getjComboBoxPdts().getSelectedIndex();         
-        pedidoInicial.getProdutosEscolhidos().remove(indiceL);        
+        int indiceL = viewPedidoRestaurante2.getjComboBoxPdts().getSelectedIndex();
+        pedidoInicial.getProdutosEscolhidos().remove(indiceL);
         viewPedidoRestaurante2.getjComboBoxPdts().removeItemAt(indiceL);
+        exibirQtdPrecoTotal();
         //CONTINUAR
         //Use J combo box.      
 
     }
-    
-    
-    public static void removerTudoR1(){
+
+    public static void removerTudoR1() {
         viewPedidoRestaurante1.getjComboBoxPdts().removeAllItems();
         pedidoInicial.getProdutosEscolhidos().removeAll(pedidoInicial.getProdutosEscolhidos());
-    }    
-    
-    
-    public static void removerTudoR2(){
+        exibirQtdPrecoTotal();
+
+    }
+
+    public static void removerTudoR2() {
         viewPedidoRestaurante2.getjComboBoxPdts().removeAllItems();
         pedidoInicial.getProdutosEscolhidos().removeAll(pedidoInicial.getProdutosEscolhidos());
+        exibirQtdPrecoTotal();
+
     }
-    
-    
-    
-    
 
     //Saída - Métodos
     public static void sairDoFastLunch() {
@@ -342,11 +416,15 @@ public class TelaUsuarioController implements ICliente {
     public static void sairTelaFazerPedido() {
         viewFazerPedido.dispose();
         botaoFazerPedidoSelecionado = false;
+        viewUsuario.getjAreaDeTrabalho().remove(viewFazerPedido);
+
     }
 
     public static void sairTelaMinhaConta() {
         viewVisualizarConta.dispose();
         botaoVisualizarContaSelecionado = false;
+        viewUsuario.getjAreaDeTrabalho().remove(viewVisualizarConta);
+
     }
 
     public static void sairDurantePedidoR1() { //Não está pronto!! USE DISPOSE
@@ -354,8 +432,15 @@ public class TelaUsuarioController implements ICliente {
         if (resposta == 0) {
             botaoFazerPedidoSelecionado = false;
             viewPedidoRestaurante1.dispose();
-            int indiceRemover = clienteUsuario.getNumPedidos();
-            clienteUsuario.getPedidosCliente().remove(indiceRemover-1);
+            viewUsuario.getjAreaDeTrabalho().remove(viewPedidoRestaurante1);
+            //int indiceRemover = (clienteUsuario.getNumPedidos() - 1);
+            //clienteUsuario.getPedidosCliente().remove(indiceRemover); //pode ser pedidoInicial. 
+            clienteUsuario.getPedidosCliente().remove(pedidoInicial);
+            clienteUsuario.setNumPedidos((clienteUsuario.getNumPedidos() - 1));
+            viewPedidoRestaurante1.getjComboBoxPdts().removeAllItems();
+            viewPedidoRestaurante1.getJlPrecoTotal().setText("");
+            viewPedidoRestaurante1.getJlQtdProdutos().setText("");
+
             //Pedido será apagado. Ou pagamento
         }
 
@@ -366,8 +451,14 @@ public class TelaUsuarioController implements ICliente {
         if (resposta == 0) {
             botaoFazerPedidoSelecionado = false;
             viewPedidoRestaurante2.dispose();
-            int indiceRemover = clienteUsuario.getNumPedidos();
-            clienteUsuario.getPedidosCliente().remove(indiceRemover-1);
+            viewUsuario.getjAreaDeTrabalho().remove(viewPedidoRestaurante2);
+            //int indiceRemover = (clienteUsuario.getNumPedidos() - 1);
+            //clienteUsuario.getPedidosCliente().remove(indiceRemover); //Pode ser pedidoInicial            
+            clienteUsuario.getPedidosCliente().remove(pedidoInicial);
+            clienteUsuario.setNumPedidos((clienteUsuario.getNumPedidos() - 1));
+            viewPedidoRestaurante2.getjComboBoxPdts().removeAllItems();
+            viewPedidoRestaurante2.getJlPrecoTotal().setText("");
+            viewPedidoRestaurante2.getJlQtdProdutos().setText("");
             //Pedido será apagado. Ou pagamento
         }
     }
@@ -377,9 +468,14 @@ public class TelaUsuarioController implements ICliente {
         if (resposta == 0) {
             botaoFazerPedidoSelecionado = false;
             viewTelaPagamento.dispose();
-            int indiceRemover = clienteUsuario.getNumPedidos();
-            clienteUsuario.getPedidosCliente().remove(indiceRemover-1);
+            viewUsuario.getjAreaDeTrabalho().remove(viewTelaPagamento);
+            //int indiceRemover = (clienteUsuario.getNumPedidos() - 1);
+            // clienteUsuario.getPedidosCliente().remove(indiceRemover); 
+            clienteUsuario.getPedidosCliente().remove(pedidoInicial);
+            clienteUsuario.setNumPedidos((clienteUsuario.getNumPedidos() - 1));
+
             //Pedido será apagado. Ou pagamento
+            //Esvazie a Jcombobox daqui.
         }
 
     }
@@ -403,13 +499,8 @@ public class TelaUsuarioController implements ICliente {
     public static void abrirTelaFazerPedido() {
         if (botaoFazerPedidoSelecionado == false) {
             if (botaoVisualizarContaSelecionado == false) {
-                //f (telaPedidoCriada = false) {
                 viewUsuario.getjAreaDeTrabalho().add(viewFazerPedido);
                 viewFazerPedido.setVisible(true);
-                // telaPedidoCriada = true;
-                //} else {
-                //   viewFazerPedido.setVisible(true);
-                //}
                 botaoFazerPedidoSelecionado = true;
             } else {
                 JOptionPane.showMessageDialog(viewUsuario, "Para fazer um pedido, feche a aba com as informações da sua conta.", "Erro!", JOptionPane.WARNING_MESSAGE);
@@ -440,15 +531,11 @@ public class TelaUsuarioController implements ICliente {
 
     public static void abrirTelaRestaurante1() { //Num pedido será mostrado +1.
         viewFazerPedido.dispose();
+        viewUsuario.getjAreaDeTrabalho().remove(viewFazerPedido);
         botaoR1Selecionado = true;
-        pedidoInicial = new Pedido(clienteUsuario);
-        if (clienteUsuario.getNumPedidos() == 0) {
-            clienteUsuario.getPedidosCliente().add(0, pedidoInicial);
-            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
-        } else { //Primeira vez-Posição abaixo: número 1 cheio, 2 pedidos em numPedidos. Posição a partir do zero.
-            clienteUsuario.getPedidosCliente().add(clienteUsuario.getNumPedidos(), pedidoInicial);
-            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
-        }
+        pedidoInicial = new Pedido(clienteUsuario, "Tempero Baiano");
+        clienteUsuario.getPedidosCliente().add(pedidoInicial);
+        clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
         viewUsuario.getjAreaDeTrabalho().add(viewPedidoRestaurante1);
         gerarCafeManhaTable();
         gerarBebidasR1Table();
@@ -460,71 +547,205 @@ public class TelaUsuarioController implements ICliente {
 
     public static void abrirTelaRestaurante2() {
         viewFazerPedido.dispose();
+        viewUsuario.getjAreaDeTrabalho().remove(viewFazerPedido);
         botaoR1Selecionado = false;
-        Pedido pedidoInicial = new Pedido(clienteUsuario);
-        if (clienteUsuario.getNumPedidos() == 0) {
-            clienteUsuario.getPedidosCliente().add(0, pedidoInicial);
-            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
-        } else { //Primeira vez-Posição abaixo: número 1 cheio, 2 pedidos em numPedidos. Posição a partir do zero.
-            clienteUsuario.getPedidosCliente().add(clienteUsuario.getNumPedidos(), pedidoInicial);
-            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
-        }
+        pedidoInicial = new Pedido(clienteUsuario, "Sabor Estrangeiro");
+        clienteUsuario.getPedidosCliente().add(pedidoInicial);
+        clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
         viewUsuario.getjAreaDeTrabalho().add(viewPedidoRestaurante2);
         gerarAlmocosTable();
         gerarBebidasR2Table();
         gerarPizzasTable();
         viewPedidoRestaurante2.setVisible(true);
-
         botaoFazerPedidoSelecionado = true; //é necessário?
 
     }
 
     public static void abrirTelaPagamentoR1() {
-        botaoR1Selecionado = true;
-        viewPedidoRestaurante1.dispose();
-        //if (telaPagamentoCriada == false) {
-        viewUsuario.getjAreaDeTrabalho().add(viewTelaPagamento);
-        viewTelaPagamento.setVisible(true);
-        //   telaPagamentoCriada = true;
-        //} else {
-        //   viewTelaPagamento.setVisible(true);
-        // }
-        botaoFazerPedidoSelecionado = true;
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente configurar a forma de pagamento? Não haverá possibilidade de mudança alguma no pedido durante essa configuração. Certifique-se de que o pedido contém os itens desejados.", "Atenção! - Tela de pagamento - Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (resposta == 0) {
+            botaoR1Selecionado = true;
+            viewPedidoRestaurante1.getjComboBoxPdts().removeAllItems();
+            viewPedidoRestaurante1.getJlPrecoTotal().setText("");
+            viewPedidoRestaurante1.getJlQtdProdutos().setText("");
+            viewPedidoRestaurante1.dispose();
+            viewUsuario.getjAreaDeTrabalho().remove(viewPedidoRestaurante1);
+            viewUsuario.getjAreaDeTrabalho().add(viewTelaPagamento);
+            prepararTelaPagamento();
+            viewTelaPagamento.setVisible(true);
+            botaoFazerPedidoSelecionado = true;
+        }
 
     }
 
     public static void abrirTelaPagamentoR2() {
-        viewPedidoRestaurante2.dispose();
-        // if (telaPagamentoCriada == false) {
-        viewUsuario.getjAreaDeTrabalho().add(viewTelaPagamento);
-        viewTelaPagamento.setVisible(true);
-        //    telaPagamentoCriada = true;
-        // } else {
-        //viewTelaPagamento.setVisible(true);
-        // }
-        botaoFazerPedidoSelecionado = true;
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente configurar a forma de pagamento? Não haverá possibilidade de mudança alguma no pedido durante essa configuração. Certifique-se de que o pedido contém os itens desejados.", "Atenção! - Tela de pagamento - Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (resposta == 0) {
+            botaoR1Selecionado = false;
+            viewPedidoRestaurante2.getjComboBoxPdts().removeAllItems();
+            viewPedidoRestaurante2.getJlPrecoTotal().setText("");
+            viewPedidoRestaurante2.getJlQtdProdutos().setText("");
+            viewPedidoRestaurante2.dispose();
+            viewUsuario.getjAreaDeTrabalho().remove(viewPedidoRestaurante2);
+            viewUsuario.getjAreaDeTrabalho().add(viewTelaPagamento);
+            prepararTelaPagamento();
+            viewTelaPagamento.setVisible(true);
+            botaoFazerPedidoSelecionado = true;
+        }
 
     }
 
-    public static void efetuarPagamento() {
-        botaoFazerPedidoSelecionado = false;
+    /*
+    public static void abrirTelaPagamento() {
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente configurar a forma de pagamento? Não haverá possibilidade de mudança alguma no pedido durante essa configuração. Certifique-se de que o pedido contém os idens desejados.", "Atenção! - Tela de pagamento - Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (resposta==0){
+            if (pedidoInicial.getRestauranteEscolhido() == "Tempero Baiano"){
+                
+            
+        }
+
+    }
+     */
+    //Configuração do pagamento.
+    public static void efetuarPagamentoFinal() { //Limpeza da tela e reinicialização
+        if (pagamentoDefinido == true) {
+            int resposta = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Pagamento já definido. Deseja finalizar?", "Pagamento - Fechar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (resposta == 0) {
+                pedidoInicial.setEstado("Produtos sendo preparados.");
+                JOptionPane.showMessageDialog(viewTelaPagamento, "Agradecemos pela compra!", "Finalizar", JOptionPane.INFORMATION_MESSAGE);
+                botaoFazerPedidoSelecionado = false;
+                viewTelaPagamento.setVisible(false);
+                viewUsuario.getjAreaDeTrabalho().remove(viewTelaPagamento);
+                viewTelaPagamento.getjComboBoxPdts().removeAllItems();
+                viewTelaPagamento.getJlTipoPagamento().setText("Não selecionada.");
+                viewTelaPagamento.getJlQtdProdutos().setText("");
+                viewTelaPagamento.getJlPrecoTotal().setText("");
+                viewTelaPagamento.dispose();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(viewTelaPagamento, "A forma de pagamento ainda não foi definida!", "Atenção", JOptionPane.WARNING_MESSAGE);
+
+        }
 
     }
 
     public static void efetuarPagamentoEntrega() {
+        if (pagamentoDefinido == false) {
 
+            int resposta = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Deseja realmente efetuar o pagamento durante a entrega, você não poderá definir outra forma de pagamento após esta. Certifique-se de já possuir a quantia quando seus produtos chegarem.", "Pagamento - Entrega", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (resposta == 0) {
+                String endereco = JOptionPane.showInputDialog("Digite a localização da entrega com a rua, bairro e número do local da entrega:");
+                if (endereco.isEmpty()) {
+                    JOptionPane.showMessageDialog(viewTelaPagamento, "Campo não preenchido.", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    int confirmacao = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Local da entrega: " + endereco + ". Id do pedido: " + pedidoInicial.getIdPedido() + ". Pagamento: durante a entrega. Salvar? ", "Pagamento - Entrega", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (confirmacao == 0) {
+                        String tipoPagamento = "Durante a entrega.";
+                        pedidoInicial.setTipoPagamento(tipoPagamento);
+                        viewTelaPagamento.getJlTipoPagamento().setText(tipoPagamento);
+                        pagamentoDefinido = true;
+                    }
+                }
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(viewTelaPagamento, "Tipo de pagamento já definido!", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+        }
     }
 
     public static void efetuarPagamentoPix() {
 
+        if (pagamentoDefinido == false) {
+            int resposta = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Deseja realmente efetuar o pagamento através do Pix? Você não poderá definir outra forma de pagamento após esta.", "Pagamento - Pix", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (resposta == 0) {
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Pix: XXXXXXXXXXXXXXXX.", "Pagamento - Pix", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Pagamento efetuado com sucesso!", "Pagamento - Pix", JOptionPane.INFORMATION_MESSAGE);
+                String tipoPagamento = "Por Pix.";
+                pedidoInicial.setTipoPagamento(tipoPagamento);
+                viewTelaPagamento.getJlTipoPagamento().setText(tipoPagamento);
+                pagamentoDefinido = true;
+            }
+        } else {
+            JOptionPane.showMessageDialog(viewTelaPagamento, "Tipo de pagamento já definido!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     public static void efetuarPagamentoCDebito() {
 
+        if (pagamentoDefinido == false) {
+
+            int resposta = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Deseja realmente efetuar o pagamento com um cartão de débito, você não poderá definir outra forma de pagamento após esta.", "Pagamento - Cartão de débito", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (resposta == 0) {
+                String cartao = JOptionPane.showInputDialog("Digite o número do cartão de débito:");
+                if (cartao.isEmpty()) {
+                    JOptionPane.showMessageDialog(viewTelaPagamento, "Campo não preenchido.", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    int confirmacao = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Cartão : " + cartao + ". Id do pedido: " + pedidoInicial.getIdPedido() + ". Pagamento: 1 vez sem juros. Salvar? ", "Pagamento - Cartão de débito", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (confirmacao == 0) {
+                        String tipoPagamento = "Cartão de débito.";
+                        pedidoInicial.setTipoPagamento(tipoPagamento);
+                        viewTelaPagamento.getJlTipoPagamento().setText(tipoPagamento);
+                        pagamentoDefinido = true;
+                        JOptionPane.showMessageDialog(viewVisualizarConta, "Pagamento efetuado com sucesso!", "Pagamento - Cartão de débito", JOptionPane.INFORMATION_MESSAGE);
+
+                    }
+                }
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(viewTelaPagamento, "Tipo de pagamento já definido!", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+        }
+
     }
 
     public static void efetuarPagamentoCCredito() {
+        if (pagamentoDefinido == false) {
+            int resposta = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Deseja realmente efetuar o pagamento com um cartão de crédito, você não poderá definir outra forma de pagamento após esta.", "Pagamento - Cartão de débito", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (resposta == 0) {
+                if (pedidoInicial.getPrecoTotalPedido() % 5 == 0) {
+                    String cartao = JOptionPane.showInputDialog("O preço total será dividido em 5 parcelas sem juros. Digite o número do cartão de crédito:");
+                    if (cartao.isEmpty()) {
+                        JOptionPane.showMessageDialog(viewTelaPagamento, "Campo não preenchido.", "Erro!", JOptionPane.WARNING_MESSAGE);
 
+                    } else {
+                        int confirmacao = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Cartão: " + cartao + ". Id do pedido: " + pedidoInicial.getIdPedido() + ". Pagamento: 5 vezes sem juros. " + " 5 parcelas de R$" + (pedidoInicial.getPrecoTotalPedido() / 5d) + ". Salvar? ", "Pagamento - Cartão de débito", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if (confirmacao == 0) {
+                            String tipoPagamento = "Cartão de crédito.";
+                            pedidoInicial.setTipoPagamento(tipoPagamento);
+                            viewTelaPagamento.getJlTipoPagamento().setText(tipoPagamento);
+                            pagamentoDefinido = true;
+                            JOptionPane.showMessageDialog(viewVisualizarConta, "Pagamento efetuado com sucesso!", "Pagamento - Cartão de crédito", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                } else {
+                    String cartao = JOptionPane.showInputDialog("O preço total será dividido em 2 parcelas sem juros. Digite o número do cartão de crédito:");
+                    if (cartao.isEmpty()) {
+                        JOptionPane.showMessageDialog(viewTelaPagamento, "Campo não preenchido.", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+                    } else {
+                        int confirmacao = JOptionPane.showInternalConfirmDialog(viewTelaPagamento, "Cartão : " + cartao + ". Id do pedido: " + pedidoInicial.getIdPedido() + ". Pagamento: 2 vezes sem juros." + "2 parcelas de R$" + (pedidoInicial.getPrecoTotalPedido() / 2d) + ". Salvar?", "Pagamento - Cartão de crédito", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if (confirmacao == 0) {
+                            String tipoPagamento = "Cartão de crédito.";
+                            pedidoInicial.setTipoPagamento(tipoPagamento);
+                            viewTelaPagamento.getJlTipoPagamento().setText(tipoPagamento);
+                            pagamentoDefinido = true;
+                            JOptionPane.showMessageDialog(viewVisualizarConta, "Pagamento efetuado com sucesso!", "Pagamento - Cartão de crédito", JOptionPane.INFORMATION_MESSAGE);
+
+                        }
+                    }
+
+                }
+            } else {
+
+                JOptionPane.showMessageDialog(viewTelaPagamento, "Tipo de pagamento já definido!", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+            }
+        }
     }
 
     //Modificação da conta - Métodos

@@ -16,11 +16,10 @@ import java.util.Random;
 public class Pedido {
 
     Cliente cliente;
-    private ObjectProperty<LocalDate> dtInicio; //RETIRAR DATA
-    private  LocalDate geradorData;
+    
     private  String dataPedido; //Variável final, talvez cause problemas!
     private Random idGerador = new Random();
-    private int idPedido;//Identificador específico de cada pedido feito na aplicação.
+    private String idPedido;//Identificador específico de cada pedido feito na aplicação.
     private String estado;
     ArrayList<Refeicao> produtosEscolhidos = new ArrayList<>(); //Dois construtores: com quantidade disponivel e sem ela.
     
@@ -29,32 +28,46 @@ public class Pedido {
     private double precoTotalPedido;
     private double totalDescontos; //Pois poderá ocorrer a soma de descontos.
     private String tipoPagamento;
+    private String restauranteEscolhido;
+    private int numProdutos;
+
+    public Pedido() {
+    }
     
-    public Pedido(Cliente cliente) { //Valores iniciais, irão mudar conforme o pedido se desenvolva. 
+    
+    
+    
+    public Pedido(Cliente cliente, String restauranteEscolhido) { //Valores iniciais, irão mudar conforme o pedido se desenvolva. 
         this.cliente = cliente;
-        //Random?               
+        //Random?
+        LocalDate geradorData = LocalDate.now();
         this.dataPedido = String.valueOf(geradorData.getDayOfMonth() + "/" + geradorData.getMonthValue() + "/" + geradorData.getYear()); //Ordem da data incorreta!!! Talvez ValueOfString? SIM, FEITO EM PRINCIPAL!! Corrigida.
-        this.idPedido = idGerador.nextInt(1000) + 1; //Valor inicial sem a valiidação. Em tese.
+        this.idPedido = String.valueOf(idGerador.nextInt(10000)); //Valor inicial sem a valiidação. Em tese.
         this.estado = ("Em configuração..."); //Pode mudar. Sendo preparado, a caminho,  cancelado.
         this.precoTotalPedido = 0d;
         this.tipoPagamento = ("Ainda não definido.");
-        this.geradorData = geradorData;
+        this.restauranteEscolhido = restauranteEscolhido;
+        this.numProdutos = 0;
+        
         
     }
 
     //Validar ID
-    public void removerProduto(Refeicao refeicao) {
-        this.produtosEscolhidos.remove(refeicao);
+    
+    public void definirPrecoEQtd(ArrayList<Refeicao> produtosEscolhidos){
+        double precoTotal = 0;//Erro?        
+        for (int i = 0; i < produtosEscolhidos.size(); i++) {
+            Refeicao produto = produtosEscolhidos.get(i);
+            precoTotal = precoTotal + produto.getPrecoProduto();            
+        }
+        this.numProdutos = produtosEscolhidos.size(); 
+        this.precoTotalPedido = precoTotal;
         
     }
     
-    public void adicionarProduto(Refeicao refeicao) {        
-        this.produtosEscolhidos.add(refeicao);
-    }
     
-    public void removerTodos() {
-        this.produtosEscolhidos.removeAll(produtosEscolhidos);
-    }
+    
+    
     
     public void mudarEstadoPedido() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -104,11 +117,11 @@ public class Pedido {
         this.idGerador = idGerador;
     }
     
-    public int getIdPedido() {
+    public String getIdPedido() {
         return idPedido;
     }
     
-    public void setIdPedido(int idPedido) {
+    public void setIdPedido(String idPedido) {
         this.idPedido = idPedido;
     }
     
@@ -151,5 +164,47 @@ public class Pedido {
     public void setPrecoTotalPedido(double precoTotalPedido) {
         this.precoTotalPedido = precoTotalPedido;
     }
+
+    public String getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(String dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
+    public String getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(String tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
+    public String getRestauranteEscolhido() {
+        return restauranteEscolhido;
+    }
+
+    public void setRestauranteEscolhido(String restauranteEscolhido) {
+        this.restauranteEscolhido = restauranteEscolhido;
+    }
+
+    public int getNumProdutos() {
+        return numProdutos;
+    }
+
+    public void setNumProdutos(int numProdutos) {
+        this.numProdutos = numProdutos;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

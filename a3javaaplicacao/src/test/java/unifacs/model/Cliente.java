@@ -27,14 +27,7 @@ public class Cliente implements ICliente {
     }
 
     //Sem a LinkedList.
-    public Cliente(String nomeCompleto, String nomeUsuario, String email, String senha, String cpf, String numTelefone) {
-        this.nomeCompleto = nomeCompleto;
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.numTelefone = numTelefone;
-    }
+   
     
     //Construtor
     //Cartão: somente na hora do pagamento.

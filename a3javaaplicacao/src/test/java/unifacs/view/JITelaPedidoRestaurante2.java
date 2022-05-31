@@ -5,6 +5,7 @@
 package unifacs.view;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import unifacs.controller.TelaUsuarioController;
@@ -48,22 +49,20 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jbIrPPagamentoR2 = new javax.swing.JButton();
-        jbSalvar = new javax.swing.JButton();
         jbRemover = new javax.swing.JButton();
         jbApagarTudo = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTabelaPizzas = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTabelaBebidas = new javax.swing.JTable();
-        jbAdicionar = new javax.swing.JButton();
         jComboBoxPdts = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jlPrecoTotal = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jlQtdProdutos = new javax.swing.JLabel();
 
         setTitle("Pedido - Restaurante Sabor Estrangeiro");
-        setPreferredSize(new java.awt.Dimension(1500, 560));
+        setPreferredSize(new java.awt.Dimension(1650, 560));
 
         jPanel1.setBackground(new java.awt.Color(102, 51, 0));
 
@@ -135,7 +134,7 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
         jLabel3.setText("Descontos adicionados:");
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Descontos");
+        jLabel4.setText("descontos indisponíveis.");
 
         jbIrPPagamentoR2.setBackground(new java.awt.Color(255, 255, 255));
         jbIrPPagamentoR2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
@@ -144,16 +143,6 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
         jbIrPPagamentoR2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbIrPPagamentoR2ActionPerformed(evt);
-            }
-        });
-
-        jbSalvar.setBackground(new java.awt.Color(255, 255, 255));
-        jbSalvar.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jbSalvar.setForeground(new java.awt.Color(102, 51, 0));
-        jbSalvar.setText("Salvar");
-        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalvarActionPerformed(evt);
             }
         });
 
@@ -231,36 +220,31 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
         });
         jScrollPane4.setViewportView(jTabelaBebidas);
 
-        jbAdicionar.setBackground(new java.awt.Color(255, 255, 255));
-        jbAdicionar.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jbAdicionar.setForeground(new java.awt.Color(102, 51, 0));
-        jbAdicionar.setText("Adicionar");
-        jbAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAdicionarActionPerformed(evt);
-            }
-        });
-
         jComboBoxPdts.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxPdts.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jComboBoxPdts.setForeground(new java.awt.Color(102, 51, 0));
         jComboBoxPdts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 102, 0), 4));
+        jComboBoxPdts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxPdtsMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Preço total:");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Descontos aplicados:");
+        jlPrecoTotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlPrecoTotal.setForeground(new java.awt.Color(255, 255, 255));
+        jlPrecoTotal.setText("0");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Qtd de produtos:");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Descontos aplicados:");
+        jlQtdProdutos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlQtdProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        jlQtdProdutos.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -270,14 +254,14 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
                     .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(373, 373, 373)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 341, Short.MAX_VALUE)))
+                        .addGap(0, 459, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(427, 427, 427)
+                        .addGap(384, 384, 384)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbIrPPagamentoR2, javax.swing.GroupLayout.Alignment.TRAILING)))
@@ -285,32 +269,26 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBoxPdts, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(183, 183, 183))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlPrecoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62))))
+                                .addComponent(jlQtdProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62))
+                            .addComponent(jComboBoxPdts, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(76, 76, 76)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbRemover)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbApagarTudo))))))
@@ -322,7 +300,7 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -332,26 +310,25 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jlPrecoTotal)
+                            .addComponent(jlQtdProdutos))
                         .addGap(31, 31, 31)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxPdts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbRemover)
-                            .addComponent(jbApagarTudo)
-                            .addComponent(jbSalvar)
-                            .addComponent(jbAdicionar))
-                        .addGap(0, 0, 0)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))))
+                        .addGap(165, 165, 165)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbRemover)
+                            .addComponent(jbApagarTudo))
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(4, 4, 4)
                         .addComponent(jbIrPPagamentoR2)
                         .addGap(32, 32, 32))))
         );
@@ -388,14 +365,6 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
         controller.removerTudoR2();
     }//GEN-LAST:event_jbApagarTudoActionPerformed
 
-    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbSalvarActionPerformed
-
-    private void jbAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdicionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbAdicionarActionPerformed
-
     private void jTabelaAlmocoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaAlmocoMouseClicked
         // Tabela almoço - Seleção!
         controller.produtoSelecionadoTAlmoco();
@@ -413,8 +382,12 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
 
     private void jbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverActionPerformed
         // TODO add your handling code here:
-        controller.removerPdtsSelecionadosR1();
+        controller.removerPdtsSelecionadosR2();
     }//GEN-LAST:event_jbRemoverActionPerformed
+
+    private void jComboBoxPdtsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxPdtsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPdtsMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -425,8 +398,6 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -435,11 +406,11 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTabelaAlmoco;
     private javax.swing.JTable jTabelaBebidas;
     private javax.swing.JTable jTabelaPizzas;
-    private javax.swing.JButton jbAdicionar;
     private javax.swing.JButton jbApagarTudo;
     private javax.swing.JButton jbIrPPagamentoR2;
     private javax.swing.JButton jbRemover;
-    private javax.swing.JButton jbSalvar;
+    private javax.swing.JLabel jlPrecoTotal;
+    private javax.swing.JLabel jlQtdProdutos;
     private javax.swing.JLabel jlSair;
     // End of variables declaration//GEN-END:variables
 
@@ -472,6 +443,22 @@ public class JITelaPedidoRestaurante2 extends javax.swing.JInternalFrame {
 
     public void setjTabelaPizzas(JTable jTabelaPizzas) {
         this.jTabelaPizzas = jTabelaPizzas;
+    }
+
+    public JLabel getJlPrecoTotal() {
+        return jlPrecoTotal;
+    }
+
+    public void setJlPrecoTotal(JLabel jlPrecoTotal) {
+        this.jlPrecoTotal = jlPrecoTotal;
+    }
+
+    public JLabel getJlQtdProdutos() {
+        return jlQtdProdutos;
+    }
+
+    public void setJlQtdProdutos(JLabel jlQtdProdutos) {
+        this.jlQtdProdutos = jlQtdProdutos;
     }
 
    

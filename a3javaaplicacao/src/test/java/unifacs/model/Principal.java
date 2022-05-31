@@ -1,9 +1,11 @@
 package unifacs.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import unifacs.view.TelaInicial;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -37,9 +39,28 @@ public class Principal {
         System.out.println(idPedido);
         System.out.println(idPedido01);
         System.out.println(idPedido02);
+        
+        TelaInicial viewInicial = new TelaInicial();
+        
+        ArrayList<Cliente> exemplo =  viewInicial.getListaClientesCadastrados();
+        System.out.println("Exemplo!");
+        
+        
+        
+        /*
 
+        ArrayList<Pedido> exemplo = new ArrayList<>();
+        System.out.println(exemplo.size());
+        
+        
+        */
+        
+        /*
         int resposta = JOptionPane.showInternalConfirmDialog(null, "Tem certeza de que deseja sair do Fast Lunch? Qualquer operação em configuração não será salva.", "Sair - Fast Lunch", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         System.out.println(resposta);
+        
+        */
+        
 
         // Teste da validação do email
         Scanner leitura = new Scanner(System.in);

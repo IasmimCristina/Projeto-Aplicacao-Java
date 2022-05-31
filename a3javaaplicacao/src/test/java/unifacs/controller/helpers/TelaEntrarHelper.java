@@ -4,17 +4,34 @@
  */
 package unifacs.controller.helpers;
 
-import unifacs.view.TelaCadastrar;
+import unifacs.view.TelaEntrar;
+
+
+
+
+
 
 /**
  *
  * @author YellowRed
  */
 public class TelaEntrarHelper {
-    private final TelaCadastrar viewCadastrar;
+    private final TelaEntrar viewEntrar;
 
-    public TelaEntrarHelper(TelaCadastrar viewCadastrar) {
-        this.viewCadastrar = viewCadastrar;
+    public TelaEntrarHelper(TelaEntrar viewEntrar) {
+        this.viewEntrar = viewEntrar;
+    }
+
+    
+    
+    
+    public String pegarSenha(){
+        String senha = String.valueOf(viewEntrar.getjPEntrarSenha().getPassword());        
+        return senha;
     }
     
+    public String pegarEmail(){
+        String email = String.valueOf(viewEntrar.getjTEntrarEmail().getText());
+        return email;
+    }
 }
