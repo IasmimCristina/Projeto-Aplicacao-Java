@@ -4,7 +4,9 @@
  */
 package unifacs.controller;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import unifacs.controller.helpers.TelaUsuarioHelper;
 import unifacs.controller.helpers.TelaVisualizarContaHelper;
 import unifacs.model.Cliente;
@@ -17,6 +19,9 @@ import unifacs.view.JITelaPedidoRestaurante2;
 import unifacs.view.JITelaVisualizarConta;
 import unifacs.view.TelaInicial;
 import unifacs.view.TelaUsuario;
+import unifacs.model.Refeicao;
+import unifacs.model.RestauranteBr;
+import unifacs.model.RestauranteInternacional;
 
 /**
  *
@@ -44,6 +49,20 @@ public class TelaUsuarioController implements ICliente {
     private static boolean telaR2Criada;
     private static boolean telaPedidoCriada;
 
+    //Cárdapios e refeições
+    private static RestauranteBr temperoBaiano = new RestauranteBr();
+    private static RestauranteInternacional saborEstrangeiro = new RestauranteInternacional();
+    private static Refeicao refeicao;
+    private static Pedido pedidoInicial;
+
+    //Validação da refeição - Restaurante
+    private static Integer indicesSelecionadosAlmoco = 0;
+    private static Integer indicesSelecionadosPizzas = 0;
+    private static Integer indicesSelecionadosBebidasR2 = 0;
+    private static Integer indicesSelecionadosCafeManha = 0;
+    private static Integer indicesSelecionadosBebidasR1 = 0;
+    private static Integer indicesSelecionadosLanches = 0;
+
     //Cliente:
     private static Cliente clienteUsuario = new Cliente();
     //Helpers:
@@ -68,6 +87,9 @@ public class TelaUsuarioController implements ICliente {
         this.telaR2Criada = false;
         this.telaPedidoCriada = false;
 
+        //Inicialização dos restaurantes:
+        //this.temperoBaiano =  new RestauranteBr();
+        //this.saborEstrangeiro = new RestauranteInternacional();
         //Controllers
         //controllerInicial = new TelasIniciaisController(viewInicial, viewCadastrar, viewEntrar, viewEsqueceuSenha, viewUsuario);
         //Helpers
@@ -92,10 +114,220 @@ public class TelaUsuarioController implements ICliente {
     }
 
     public static void darSaudacaoUsuario() {
-        String mensagem = "Olá, " + clienteUsuario.getNomeUsuario() + "!   :D";
+        String mensagem = "Olá, " + clienteUsuario.getNomeUsuario() + "!       :D";
         helperUsuario.exibirSaudacao(mensagem);
 
     }
+
+    //Exibicao de texto - Tabelas - Coloque essas funções antes da tela aparecer!!
+    public static void gerarCafeManhaTable() {
+        ArrayList<Refeicao> cafeManha; //Cópia por referência.
+        cafeManha = temperoBaiano.getCardapioCafeDaManha();
+        DefaultTableModel model = (DefaultTableModel) viewPedidoRestaurante1.getjTabelaCafeManha().getModel();
+        Object produtoLinha[] = new Object[4];
+
+        for (int i = 0; i < cafeManha.size(); i++) {
+            produtoLinha[0] = cafeManha.get(i).getQtdLimite();
+            produtoLinha[1] = cafeManha.get(i).getNome();
+            produtoLinha[2] = cafeManha.get(i).getTamanho();
+            produtoLinha[3] = cafeManha.get(i).getPrecoProduto();
+            model.addRow(produtoLinha);
+        }
+
+    }
+
+    public static void gerarBebidasR1Table() {
+        ArrayList<Refeicao> bebidasR1; //Cópia por referência.
+        bebidasR1 = temperoBaiano.getCardapioBebidasCafeDaManha();
+        DefaultTableModel model = (DefaultTableModel) viewPedidoRestaurante1.getjTabelaBebidas().getModel();
+        Object produtoLinha[] = new Object[4];
+
+        for (int i = 0; i < bebidasR1.size(); i++) {
+            produtoLinha[0] = bebidasR1.get(i).getQtdLimite();
+            produtoLinha[1] = bebidasR1.get(i).getNome();
+            produtoLinha[2] = bebidasR1.get(i).getTamanho();
+            produtoLinha[3] = bebidasR1.get(i).getPrecoProduto();
+            model.addRow(produtoLinha);
+        }
+
+    }
+
+    public static void gerarLanchesTable() {
+        ArrayList<Refeicao> lanches; //Cópia por referência.
+        lanches = temperoBaiano.getCardapioLanches();
+        DefaultTableModel model = (DefaultTableModel) viewPedidoRestaurante1.getjTabelaLanches().getModel();
+        Object produtoLinha[] = new Object[4];
+
+        for (int i = 0; i < lanches.size(); i++) {
+            produtoLinha[0] = lanches.get(i).getQtdLimite();
+            produtoLinha[1] = lanches.get(i).getNome();
+            produtoLinha[2] = lanches.get(i).getTamanho();
+            produtoLinha[3] = lanches.get(i).getPrecoProduto();
+            model.addRow(produtoLinha);
+        }
+
+    }
+
+    public static void gerarAlmocosTable() {
+        ArrayList<Refeicao> almoco; //Cópia por referência.
+        almoco = saborEstrangeiro.getCardapioAlmocoJantar();
+        DefaultTableModel model = (DefaultTableModel) viewPedidoRestaurante2.getjTabelaAlmoco().getModel();
+        Object produtoLinha[] = new Object[4];
+
+        for (int i = 0; i < almoco.size(); i++) {
+            produtoLinha[0] = almoco.get(i).getQtdLimite();
+            produtoLinha[1] = almoco.get(i).getNome();
+            produtoLinha[2] = almoco.get(i).getTamanho();
+            produtoLinha[3] = almoco.get(i).getPrecoProduto();
+            model.addRow(produtoLinha);
+        }
+
+    }
+
+    public static void gerarPizzasTable() {
+        ArrayList<Refeicao> pizzas; //Cópia por referência.
+        pizzas = saborEstrangeiro.getCardapioPizzas();
+        DefaultTableModel model = (DefaultTableModel) viewPedidoRestaurante2.getjTabelaPizzas().getModel();
+        Object produtoLinha[] = new Object[4];
+
+        for (int i = 0; i < pizzas.size(); i++) {
+            produtoLinha[0] = pizzas.get(i).getQtdLimite();
+            produtoLinha[1] = pizzas.get(i).getNome();
+            produtoLinha[2] = pizzas.get(i).getTamanho();
+            produtoLinha[3] = pizzas.get(i).getPrecoProduto();
+            model.addRow(produtoLinha);
+        }
+
+    }
+
+    public static void gerarBebidasR2Table() {
+        ArrayList<Refeicao> bebidasR2; //Cópia por referência.
+        bebidasR2 = saborEstrangeiro.getCardapioBebidas();
+        DefaultTableModel model = (DefaultTableModel) viewPedidoRestaurante2.getjTabelaBebidas().getModel();
+        Object produtoLinha[] = new Object[4];
+
+        for (int i = 0; i < bebidasR2.size(); i++) {
+            produtoLinha[0] = bebidasR2.get(i).getQtdLimite();
+            produtoLinha[1] = bebidasR2.get(i).getNome();
+            produtoLinha[2] = bebidasR2.get(i).getTamanho();
+            produtoLinha[3] = bebidasR2.get(i).getPrecoProduto();
+            model.addRow(produtoLinha);
+        }
+
+    }
+
+    //Exibição dos produtos selecionados - Métodos
+    public static void produtoSelecionadoTAlmoco() {//Sem a quantidade selecionada ainda. Irá se repetir
+        //  Adicione o pedido à lista!!
+        int indiceL = viewPedidoRestaurante2.getjTabelaAlmoco().getSelectedRow();
+        refeicao = saborEstrangeiro.getCardapioAlmocoJantar().get(indiceL);
+        pedidoInicial.getProdutosEscolhidos().add(refeicao);
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        viewPedidoRestaurante2.getjComboBoxPdts().addItem(descricao);
+        //CONTINUAR
+        //Use J combo box.       
+
+    }
+
+    public static void produtoSelecionadoTBebidasR2() {//Sem a quantidade selecionada ainda. Irá se repetir
+        //  Adicione o pedido à lista!!
+        int indiceL = viewPedidoRestaurante2.getjTabelaBebidas().getSelectedRow();
+        refeicao = saborEstrangeiro.getCardapioBebidas().get(indiceL);
+        pedidoInicial.getProdutosEscolhidos().add(refeicao);
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        viewPedidoRestaurante2.getjComboBoxPdts().addItem(descricao);
+        //CONTINUAR
+        //Use J combo box.       
+
+    }
+
+    public static void produtoSelecionadoTPizzas() {//Sem a quantidade selecionada ainda. Irá se repetir
+        //  Adicione o pedido à lista!!
+        int indiceL = viewPedidoRestaurante2.getjTabelaPizzas().getSelectedRow();
+        refeicao = saborEstrangeiro.getCardapioPizzas().get(indiceL);
+        pedidoInicial.getProdutosEscolhidos().add(refeicao);
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        viewPedidoRestaurante2.getjComboBoxPdts().addItem(descricao);
+        //CONTINUAR
+        //Use J combo box.       
+
+    }
+
+    public static void produtoSelecionadosTCafeManha() {//Sem a quantidade selecionada ainda. Irá se repetir
+        //  Adicione o pedido à lista!!
+        int indiceL = viewPedidoRestaurante1.getjTabelaCafeManha().getSelectedRow();
+        refeicao = temperoBaiano.getCardapioCafeDaManha().get(indiceL);
+        pedidoInicial.getProdutosEscolhidos().add(refeicao);
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        viewPedidoRestaurante1.getjComboBoxPdts().addItem(descricao);
+        //CONTINUAR
+        //Use J combo box.       
+
+    }
+
+    public static void produtoSelecionadosTBebidasR1() {//Sem a quantidade selecionada ainda. Irá se repetir
+        //  Adicione o pedido à lista!!
+        int indiceL = viewPedidoRestaurante1.getjTabelaBebidas().getSelectedRow();
+        indicesSelecionadosBebidasR1++; //Não é mais necessário?
+        refeicao = temperoBaiano.getCardapioBebidasCafeDaManha().get(indiceL);
+        pedidoInicial.getProdutosEscolhidos().add(refeicao);
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        viewPedidoRestaurante1.getjComboBoxPdts().addItem(descricao);
+        //CONTINUAR
+        //Use J combo box.       
+
+    }
+
+    public static void produtoSelecionadosTLanches() {//Sem a quantidade selecionada ainda. Irá se repetir
+        //  Adicione o pedido à lista!!
+        int indiceL = viewPedidoRestaurante1.getjTabelaLanches().getSelectedRow();
+        indicesSelecionadosLanches++; //Não é mais necessário?
+        refeicao = temperoBaiano.getCardapioLanches().get(indiceL);
+        pedidoInicial.getProdutosEscolhidos().add(refeicao);
+        String descricao = (refeicao.getNome() + " - " + refeicao.getTamanho());
+        viewPedidoRestaurante1.getjComboBoxPdts().addItem(descricao);
+        //CONTINUAR
+        //Use J combo box.       
+
+    }
+
+    //Remoção = Produtos selecionados
+    public static void removerPdtsSelecionadosR1() {//Somente uma função, indices selecionados não funcionará!!
+        //  Retire o pedido da lista!!
+        int indiceL = viewPedidoRestaurante1.getjComboBoxPdts().getSelectedIndex();         
+        pedidoInicial.getProdutosEscolhidos().remove(indiceL);        
+        viewPedidoRestaurante1.getjComboBoxPdts().removeItemAt(indiceL);
+        //CONTINUAR
+        //Use J combo box.       
+
+    }
+    
+    
+    public static void removerPdtsSelecionadosR2() {//Somente uma função, indices selecionados não funcionará!!
+        //  Retire o pedido da lista!!
+        int indiceL = viewPedidoRestaurante2.getjComboBoxPdts().getSelectedIndex();         
+        pedidoInicial.getProdutosEscolhidos().remove(indiceL);        
+        viewPedidoRestaurante2.getjComboBoxPdts().removeItemAt(indiceL);
+        //CONTINUAR
+        //Use J combo box.      
+
+    }
+    
+    
+    public static void removerTudoR1(){
+        viewPedidoRestaurante1.getjComboBoxPdts().removeAllItems();
+        pedidoInicial.getProdutosEscolhidos().removeAll(pedidoInicial.getProdutosEscolhidos());
+    }    
+    
+    
+    public static void removerTudoR2(){
+        viewPedidoRestaurante2.getjComboBoxPdts().removeAllItems();
+        pedidoInicial.getProdutosEscolhidos().removeAll(pedidoInicial.getProdutosEscolhidos());
+    }
+    
+    
+    
+    
 
     //Saída - Métodos
     public static void sairDoFastLunch() {
@@ -120,35 +352,37 @@ public class TelaUsuarioController implements ICliente {
     public static void sairDurantePedidoR1() { //Não está pronto!! USE DISPOSE
         int resposta = JOptionPane.showInternalConfirmDialog(null, "Tem certeza de que deseja sair durante a configuração do pedido? Produtos selecionados não serão salvos.", "Sair - Pedido", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
-            botaoFazerPedidoSelecionado = false;            
+            botaoFazerPedidoSelecionado = false;
             viewPedidoRestaurante1.dispose();
+            int indiceRemover = clienteUsuario.getNumPedidos();
+            clienteUsuario.getPedidosCliente().remove(indiceRemover-1);
             //Pedido será apagado. Ou pagamento
         }
 
     }
-    
+
     public static void sairDurantePedidoR2() { //Não está pronto!! USE DISPOSE
         int resposta = JOptionPane.showInternalConfirmDialog(null, "Tem certeza de que deseja sair durante a configuração do pedido? Produtos selecionados não serão salvos.", "Sair - Pedido", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
-            botaoFazerPedidoSelecionado = false;            
+            botaoFazerPedidoSelecionado = false;
             viewPedidoRestaurante2.dispose();
+            int indiceRemover = clienteUsuario.getNumPedidos();
+            clienteUsuario.getPedidosCliente().remove(indiceRemover-1);
             //Pedido será apagado. Ou pagamento
         }
     }
+
     public static void sairDuranteTelaPagamento() { //Não está pronto!! USE DISPOSE
         int resposta = JOptionPane.showInternalConfirmDialog(null, "Tem certeza de que deseja sair durante a configuração do pedido? Produtos selecionados não serão salvos.", "Sair - Pedido", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
-            botaoFazerPedidoSelecionado = false;            
+            botaoFazerPedidoSelecionado = false;
             viewTelaPagamento.dispose();
+            int indiceRemover = clienteUsuario.getNumPedidos();
+            clienteUsuario.getPedidosCliente().remove(indiceRemover-1);
             //Pedido será apagado. Ou pagamento
         }
 
     }
-    
-    
-    
-    
-    
 
     //Cancelamento - Métodos
     public static void cancelarPedidoPago() {
@@ -204,17 +438,22 @@ public class TelaUsuarioController implements ICliente {
 
     }
 
-    public static void abrirTelaRestaurante1() {
+    public static void abrirTelaRestaurante1() { //Num pedido será mostrado +1.
         viewFazerPedido.dispose();
         botaoR1Selecionado = true;
-        //if (telaR1Criada = false) {
+        pedidoInicial = new Pedido(clienteUsuario);
+        if (clienteUsuario.getNumPedidos() == 0) {
+            clienteUsuario.getPedidosCliente().add(0, pedidoInicial);
+            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
+        } else { //Primeira vez-Posição abaixo: número 1 cheio, 2 pedidos em numPedidos. Posição a partir do zero.
+            clienteUsuario.getPedidosCliente().add(clienteUsuario.getNumPedidos(), pedidoInicial);
+            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
+        }
         viewUsuario.getjAreaDeTrabalho().add(viewPedidoRestaurante1);
+        gerarCafeManhaTable();
+        gerarBebidasR1Table();
+        gerarLanchesTable();
         viewPedidoRestaurante1.setVisible(true);
-        //    telaR1Criada = true;
-
-        //} else {
-        //    viewPedidoRestaurante1.setVisible(true);
-        //}
         botaoFazerPedidoSelecionado = true; //é necessário?
 
     }
@@ -222,21 +461,23 @@ public class TelaUsuarioController implements ICliente {
     public static void abrirTelaRestaurante2() {
         viewFazerPedido.dispose();
         botaoR1Selecionado = false;
-        //if (telaR2Criada == false) {
+        Pedido pedidoInicial = new Pedido(clienteUsuario);
+        if (clienteUsuario.getNumPedidos() == 0) {
+            clienteUsuario.getPedidosCliente().add(0, pedidoInicial);
+            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
+        } else { //Primeira vez-Posição abaixo: número 1 cheio, 2 pedidos em numPedidos. Posição a partir do zero.
+            clienteUsuario.getPedidosCliente().add(clienteUsuario.getNumPedidos(), pedidoInicial);
+            clienteUsuario.setNumPedidos(clienteUsuario.getNumPedidos() + 1);
+        }
         viewUsuario.getjAreaDeTrabalho().add(viewPedidoRestaurante2);
+        gerarAlmocosTable();
+        gerarBebidasR2Table();
+        gerarPizzasTable();
         viewPedidoRestaurante2.setVisible(true);
-        //   telaR2Criada = true;
-        //} else {
-        //   viewPedidoRestaurante2.setVisible(true);
-        // }
 
         botaoFazerPedidoSelecionado = true; //é necessário?
 
     }
-
-    
-
-   
 
     public static void abrirTelaPagamentoR1() {
         botaoR1Selecionado = true;
@@ -265,8 +506,6 @@ public class TelaUsuarioController implements ICliente {
 
     }
 
-    
-
     public static void efetuarPagamento() {
         botaoFazerPedidoSelecionado = false;
 
@@ -290,7 +529,7 @@ public class TelaUsuarioController implements ICliente {
 
     //Modificação da conta - Métodos
     public static void modificarNomeUsuario() {
-        int resposta = JOptionPane.showInternalConfirmDialog(null, "Deseja realmente modificar o nome de usuário?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente modificar o nome de usuário?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
             String nome = JOptionPane.showInputDialog("Digite o novo nome de usuário:");
             String nomeUsuarioNovo = nome.trim();
@@ -298,17 +537,17 @@ public class TelaUsuarioController implements ICliente {
                 JOptionPane.showMessageDialog(viewVisualizarConta, "Campo não preenchido. Nehuma alteração foi efetuada.", "Erro!", JOptionPane.WARNING_MESSAGE);
 
             } else if (nomeUsuarioNovo.equals(clienteUsuario.getNomeUsuario())) {
-                JOptionPane.showMessageDialog(viewUsuario, "Nome inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Nome inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
             } else {
                 clienteUsuario.setNomeUsuario(nomeUsuarioNovo);
                 preencherMinhaConta(viewUsuario.getClienteUsuario()); //Atualizar exibição.
-                JOptionPane.showMessageDialog(viewUsuario, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
 
     public static void modificarNomeCompleto() {
-        int resposta = JOptionPane.showInternalConfirmDialog(null, "Deseja realmente modificar o nome completo cadastrado?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente modificar o nome completo cadastrado?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
             String nome = JOptionPane.showInputDialog("Digite o novo nome completo:");
             String nomeCompletoNovo = nome.trim();
@@ -316,17 +555,17 @@ public class TelaUsuarioController implements ICliente {
                 JOptionPane.showMessageDialog(viewVisualizarConta, "Campo não preenchido. Nehuma alteração foi efetuada.", "Erro!", JOptionPane.WARNING_MESSAGE);
 
             } else if (nomeCompletoNovo.equals(clienteUsuario.getNomeCompleto())) {
-                JOptionPane.showMessageDialog(viewUsuario, "Nome inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Nome inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
             } else {
                 clienteUsuario.setNomeCompleto(nomeCompletoNovo);
                 preencherMinhaConta(viewUsuario.getClienteUsuario()); //Atualizar exibição.
-                JOptionPane.showMessageDialog(viewUsuario, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
 
     public static void modificarEmail() {
-        int resposta = JOptionPane.showInternalConfirmDialog(null, "Deseja realmente modificar o endereço de email cadastrado?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente modificar o endereço de email cadastrado?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
             String email = JOptionPane.showInputDialog("Digite o novo endereço de email:");
             String emailNovo = email.trim();
@@ -335,50 +574,74 @@ public class TelaUsuarioController implements ICliente {
 
             } else if (emailNovo.contains("@") && emailNovo.contains(".com")) {
                 if (emailNovo.equals(clienteUsuario.getEmail())) {
-                    JOptionPane.showMessageDialog(viewUsuario, "Endereço de email é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(viewVisualizarConta, "Endereço de email é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
                 } else {
                     clienteUsuario.setEmail(emailNovo);
                     preencherMinhaConta(viewUsuario.getClienteUsuario()); //Atualizar exibição.
-                    JOptionPane.showMessageDialog(viewUsuario, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(viewVisualizarConta, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(viewUsuario, "Email inserido inválido.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Email inserido inválido.", "Erro!", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
 
     public static void modificarCPF() {
-        int resposta = JOptionPane.showInternalConfirmDialog(null, "Deseja realmente modificar o CPF cadastrado", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente modificar o CPF cadastrado", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
             String cpf = JOptionPane.showInputDialog("Digite o novo CPF:");
             String cpfNovo = cpf.trim();
             if (cpfNovo.isEmpty()) {
                 JOptionPane.showMessageDialog(viewVisualizarConta, "Campo não preenchido. Nehuma alteração foi efetuada.", "Erro!", JOptionPane.WARNING_MESSAGE);
             } else if (cpfNovo.equals(clienteUsuario.getCpf())) {
-                JOptionPane.showMessageDialog(viewUsuario, "CPF inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "CPF inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
             } else {
                 clienteUsuario.setCpf(cpfNovo);
                 preencherMinhaConta(viewUsuario.getClienteUsuario()); //Atualizar exibição.
-                JOptionPane.showMessageDialog(viewUsuario, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
 
     public static void modificarNumTel() {
-        int resposta = JOptionPane.showInternalConfirmDialog(null, "Deseja realmente modificar o número de telefone?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente modificar o número de telefone?", "Modificar conta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resposta == 0) {
             String numTel = JOptionPane.showInputDialog("Digite o novo número de telefone:");
             String numTelNovo = numTel.trim();
             if (numTelNovo.isEmpty()) {
                 JOptionPane.showMessageDialog(viewVisualizarConta, "Campo não preenchido. Nehuma alteração foi efetuada.", "Erro!", JOptionPane.WARNING_MESSAGE);
             } else if (numTelNovo.equals(clienteUsuario.getNumTelefone())) {
-                JOptionPane.showMessageDialog(viewUsuario, "Número de telefone inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Número de telefone inserido é igual ao atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
             } else {
                 clienteUsuario.setNumTelefone(numTelNovo);
                 preencherMinhaConta(viewUsuario.getClienteUsuario()); //Atualizar exibição.
-                JOptionPane.showMessageDialog(viewUsuario, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Modificação efetuada com sucesso!", "Modificação - Conta", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+    }
+
+    public static void modificarSenha() {
+        int resposta = JOptionPane.showInternalConfirmDialog(viewVisualizarConta, "Deseja realmente modificar a sua senha?", "Modificar senha", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (resposta == 0) {
+            String senhaComprovacao = JOptionPane.showInputDialog("Digite a sua senha atual:");//Input aparece no meio da tela!
+            if (senhaComprovacao.equals(clienteUsuario.getSenha())) {
+                String senha = JOptionPane.showInputDialog("Digite a nova senha:");
+                String senhaNova = senha.trim();
+                if (senhaNova.isEmpty()) {
+                    JOptionPane.showMessageDialog(viewVisualizarConta, "Campo não preenchido. Nehuma alteração foi efetuada.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                } else if (senhaNova.equals(clienteUsuario.getSenha())) {
+                    JOptionPane.showMessageDialog(viewVisualizarConta, "A nova senha interida é igual à atual!.", "Erro!", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    clienteUsuario.setSenha(senhaNova);
+                    //preencherMinhaConta(viewUsuario.getClienteUsuario()); //Atualizar exibição.
+                    JOptionPane.showMessageDialog(viewVisualizarConta, "Modificação efetuada com sucesso!", "Modificação - Senha", JOptionPane.INFORMATION_MESSAGE);
+                } //AQUI
+            } else {
+                JOptionPane.showMessageDialog(viewVisualizarConta, "Senha incorreta.", "Erro!", JOptionPane.WARNING_MESSAGE);
+
+            }
+        }
+
     }
 
     public static void excluirContaUsuario() {

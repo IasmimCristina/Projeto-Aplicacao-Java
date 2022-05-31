@@ -21,6 +21,7 @@ public class Cliente implements ICliente {
     
     //Local de entrega? No pagamento.
     private LinkedList<Pedido> pedidosCliente;
+    private Integer numPedidos;
 
     public Cliente() {
     }
@@ -46,6 +47,7 @@ public class Cliente implements ICliente {
         this.cpf = cpf;
         this.numTelefone = numTelefone;
         this.pedidosCliente = pedidosCliente;
+        this.numPedidos = 0;
     }
     
     
@@ -116,6 +118,14 @@ public class Cliente implements ICliente {
 
     public void setNumTelefone(String numTelefone) {
         this.numTelefone = numTelefone;
+    }
+
+    public Integer getNumPedidos() {
+        return numPedidos;
+    }
+
+    public void setNumPedidos(Integer numPedidos) {
+        this.numPedidos = numPedidos;
     }
 
     

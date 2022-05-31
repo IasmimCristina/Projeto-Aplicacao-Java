@@ -8,7 +8,7 @@ package unifacs.model;
  *
  * @author YellowRed
  */
-class Refeicao {
+public class Refeicao {
     
     //Terá dois construtores.
     private int qtdSelecionada;

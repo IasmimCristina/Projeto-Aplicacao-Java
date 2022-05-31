@@ -4,6 +4,7 @@
  */
 package unifacs.view;
 
+import unifacs.controller.TelaUsuarioController;
 import unifacs.controller.TelasIniciaisController;
 
 /**
@@ -40,7 +41,7 @@ public class TelaEntrar extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlSair = new javax.swing.JLabel();
         jbEntrar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -65,14 +66,14 @@ public class TelaEntrar extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 51, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("X");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlSair.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jlSair.setForeground(new java.awt.Color(102, 51, 0));
+        jlSair.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSair.setText("X");
+        jlSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlSairMouseClicked(evt);
             }
         });
 
@@ -81,12 +82,12 @@ public class TelaEntrar extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlSair, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jlSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -275,9 +276,9 @@ public class TelaEntrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbEntrarActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabel1MouseClicked
+    private void jlSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSairMouseClicked
+        TelaUsuarioController.sairDoFastLunch();
+    }//GEN-LAST:event_jlSairMouseClicked
 
     private void jTEntrarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTEntrarEmailActionPerformed
         // TODO add your handling code here:
@@ -334,7 +335,6 @@ public class TelaEntrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPEntrarSenha;
@@ -347,5 +347,6 @@ public class TelaEntrar extends javax.swing.JFrame {
     private javax.swing.JButton jbEntrar;
     private javax.swing.JButton jbEsqueceuSenha;
     private javax.swing.JButton jbVoltarEntrar;
+    private javax.swing.JLabel jlSair;
     // End of variables declaration//GEN-END:variables
 }

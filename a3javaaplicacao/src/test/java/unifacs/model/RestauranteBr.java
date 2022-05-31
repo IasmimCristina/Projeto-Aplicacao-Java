@@ -20,14 +20,19 @@ public class RestauranteBr extends Restaurante {
     private Refeicao refeicao;
     private ArrayList<Refeicao> cardapioCafeDaManha = new ArrayList<>();
     private ArrayList<Refeicao> cardapioBebidasCafeDaManha = new ArrayList<>();
-    private  ArrayList<Refeicao> cardapioDoces = new ArrayList<>();
-    private  ArrayList<Refeicao> cardapioSalgados = new ArrayList<>();
-    private double descontoComboCafe; // comida 4 bebida 2, comida 10 bebida 5, comida 3 bebida 1 = 10%
-    private double descontoFesta; // 40+ doces, 45+ salgados, 35 doces 35 salgados, 25 doces 25 salgados 5 bebidas(grandes) = 25%
+    private  ArrayList<Refeicao> cardapioLanches = new ArrayList<>();
+    private double descontoComboCafe; // comida 4 bebida 2, comida 10 bebida 5, comida 3 bebida 3 = 5%
+    private double descontoFesta; // 40+ doces, 45+ salgados, 35 doces 35 salgados, 25 doces 25 salgados 5 bebidas(grandes) = 10%
 
 
 
     public RestauranteBr() {
+        //Informações - Restaurante (Talvez apareçam como informação extra.)
+        super.nome = "Tempero Baiano";
+        super.descricaoRestaurante = "Café da manhã brasileiro e lanches.";
+        super.descricaoDesconto = "Descontos de 5% e 10%.";
+        
+        
         //Cárdapio - Café da manhã - Comidas
         refeicao = new Refeicao(55, "Tigela de cuscuz paulista", "Médio", 7d);
         cardapioCafeDaManha.add(refeicao);
@@ -110,70 +115,80 @@ public class RestauranteBr extends Restaurante {
         refeicao = new Refeicao(50, "Chá de limão e hortelã", "Pequeno", 3d);
         cardapioBebidasCafeDaManha.add(refeicao);
         
-      //Cárdapio - Lanches - Doces
-      refeicao = new Refeicao(500, "Brigadeiro de morango e chocolate", "Médio", 2.5d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(270, "Trufa clássica", "Grande", 8.5d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(270, "Copo de mousse de maracujá", "Pequeno", 2.5d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(270, "Cakepop", "Médio", 3d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(270, "Bala de coco caramelizada", "Grande", 8d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(170, "Alfajor de doce de leite", "Pequeno", 3d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(170, "Cocada de colher", "Pequeno", 5.5d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(370, "Trufa de maracujá", "Pequeno", 4d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(370, "Espeto de brigadeiro", "Pequeno", 4d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(370, "Bolo de chocolate no copo", "Pequeno", 4.5d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(370, "Brigadeiro de Nutella", "Médio", 3d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(270, "Pudim no copo", "Pequeno", 2d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(370, "Cupcake de chocolate e baunilha", "Médio", 5.5d);
-      cardapioDoces.add(refeicao);
-      refeicao = new Refeicao(370, "Cupcake de coco", "Médio", 5.5d);
-      cardapioDoces.add(refeicao);
+      
       
       
       //Cárdapio - Lanches - Salgados      
       refeicao = new Refeicao(370, "Coxinha de frango", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Croquete de carne", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Risole de frango", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Empada de frango e queijo", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Pastel de carne seca", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Pastél de queijo", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Pastél de carne", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Bolinho de queijo", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Bolinho de camarão", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Enroladinho de queijo", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Croquete", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Nugget de frango", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Quibe", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       refeicao = new Refeicao(370, "Empanada de carne", "Médio", 5.5d);
-      cardapioSalgados.add(refeicao);
+      cardapioLanches.add(refeicao);
       
       
       
 
+      //Cárdapio - Lanches - Doces
+      refeicao = new Refeicao(500, "Brigadeiro de morango e chocolate", "Médio", 2.5d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(270, "Trufa clássica", "Grande", 8.5d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(270, "Copo de mousse de maracujá", "Pequeno", 2.5d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(270, "Cakepop", "Médio", 3d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(270, "Bala de coco caramelizada", "Grande", 8d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(170, "Alfajor de doce de leite", "Pequeno", 3d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(170, "Cocada de colher", "Pequeno", 5.5d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(370, "Trufa de maracujá", "Pequeno", 4d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(370, "Espeto de brigadeiro", "Pequeno", 4d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(370, "Bolo de chocolate no copo", "Pequeno", 4.5d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(370, "Brigadeiro de Nutella", "Médio", 3d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(270, "Pudim no copo", "Pequeno", 2d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(370, "Cupcake de chocolate e baunilha", "Médio", 5.5d);
+      cardapioLanches.add(refeicao);
+      refeicao = new Refeicao(370, "Cupcake de coco", "Médio", 5.5d);
+      cardapioLanches.add(refeicao);
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
     }
     
@@ -194,6 +209,44 @@ public class RestauranteBr extends Restaurante {
     public void setCardapioCafeDaManha(ArrayList<Refeicao> cardapioCafeDaManha) {
         this.cardapioCafeDaManha = cardapioCafeDaManha;
     }
+
+    public ArrayList<Refeicao> getCardapioBebidasCafeDaManha() {
+        return cardapioBebidasCafeDaManha;
+    }
+
+    public void setCardapioBebidasCafeDaManha(ArrayList<Refeicao> cardapioBebidasCafeDaManha) {
+        this.cardapioBebidasCafeDaManha = cardapioBebidasCafeDaManha;
+    }
+
+     public ArrayList<Refeicao> getCardapioLanches() {
+        return cardapioLanches;
+    }
+
+    public void setCardapioLanches(ArrayList<Refeicao> cardapioLanches) {
+        this.cardapioLanches = cardapioLanches;
+    }
+
+    
+    
+    public double getDescontoComboCafe() {
+        return descontoComboCafe;
+    }
+
+    public void setDescontoComboCafe(double descontoComboCafe) {
+        this.descontoComboCafe = descontoComboCafe;
+    }
+
+    public double getDescontoFesta() {
+        return descontoFesta;
+    }
+
+    public void setDescontoFesta(double descontoFesta) {
+        this.descontoFesta = descontoFesta;
+    }
+
+   
+    
+    
 
     public String getNome() {
         return nome;

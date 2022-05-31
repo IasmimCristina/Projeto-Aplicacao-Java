@@ -75,7 +75,7 @@ public class JITelaVisualizarConta extends javax.swing.JInternalFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nome completo");
+        jLabel2.setText("Nome completo:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -232,11 +232,11 @@ public class JITelaVisualizarConta extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlEmail)
-                                    .addComponent(jlNumTel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlCPF))
-                                .addGap(18, 18, 18)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jlCPF)
+                                    .addComponent(jlEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                                    .addComponent(jlNumTel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(7, 7, 7)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jSeparator1)
                                     .addComponent(jSeparator3)
@@ -411,6 +411,7 @@ public class JITelaVisualizarConta extends javax.swing.JInternalFrame {
 
     private void jbModificarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarSenhaActionPerformed
         // TODO add your handling code here:
+        controller.modificarSenha();
     }//GEN-LAST:event_jbModificarSenhaActionPerformed
 
     private void jbExcluirContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirContaActionPerformed

@@ -72,7 +72,7 @@ public class JIFazerPedido extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Descontos disponíveis: 10% e 25%.");
+        jLabel2.setText("Descontos disponíveis: 5% e 10%.");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -96,7 +96,7 @@ public class JIFazerPedido extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Descontos disponíveis: 35%.");
+        jLabel6.setText("Descontos disponíveis: 15%.");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 

@@ -17,9 +17,13 @@ public class RestauranteInternacional extends Restaurante {
     private  ArrayList<Refeicao> cardapioPizzas = new ArrayList<>();
     private  ArrayList<Refeicao> cardapioBebidas = new ArrayList<>();
     private double descontoQtdPizzas; //Já recebe algo
-    //3 pizzas médias iguais, 4 pizzas grandes, 4 pizzas pequenas, 2 pizzas grandes, 2 pissas pequenas = 35%
+    //3 pizzas médias iguais, 4 pizzas grandes, 4 pizzas pequenas, 2 pizzas grandes, 2 pissas pequenas = 15%
 
     public RestauranteInternacional() {
+        //Informações - Restaurante (Talvez apareçam como informação extra.)
+        super.nome = "Sabor Estrangeiro";
+        super.descricaoRestaurante = "Pizzaria e pratos internacionais.";
+        super.descricaoDesconto = "Desconto de 15%.";
         //Cardápio - Pizzaria
         refeicao = new Refeicao(55, "Pizza de 4 queijos com pepperoni", "Pequeno", 15d);
         cardapioPizzas.add(refeicao);
@@ -138,6 +142,15 @@ public class RestauranteInternacional extends Restaurante {
         this.cardapioBebidas = cardapioBebidas;
     }
 
+    public String getDescricaoDesconto() {
+        return descricaoDesconto;
+    }
+
+    public void setDescricaoDesconto(String descricaoDesconto) {
+        this.descricaoDesconto = descricaoDesconto;
+    }
+
+    
    
     
     public String getNome() {
