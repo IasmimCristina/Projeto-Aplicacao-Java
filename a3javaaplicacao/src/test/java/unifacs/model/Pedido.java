@@ -52,7 +52,7 @@ public class Pedido {
         
     }
 
-    //Validar ID
+    
     
     public void definirPrecoEQtd(ArrayList<Refeicao> produtosEscolhidos){
         double precoTotal = 0;//Erro?        

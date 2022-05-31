@@ -30,7 +30,7 @@ public class RestauranteBr extends Restaurante {
         //Informações - Restaurante (Talvez apareçam como informação extra.)
         super.nome = "Tempero Baiano";
         super.descricaoRestaurante = "Café da manhã brasileiro e lanches.";
-        super.descricaoDesconto = "Descontos de 5% e 10%.";
+        super.descricaoDesconto = "Descontos de 5% e 10%.";//Indisponível no momento.
         
         
         //Cárdapio - Café da manhã - Comidas

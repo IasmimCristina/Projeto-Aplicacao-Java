@@ -23,7 +23,7 @@ public class RestauranteInternacional extends Restaurante {
         //Informações - Restaurante (Talvez apareçam como informação extra.)
         super.nome = "Sabor Estrangeiro";
         super.descricaoRestaurante = "Pizzaria e pratos internacionais.";
-        super.descricaoDesconto = "Desconto de 15%.";
+        super.descricaoDesconto = "Desconto de 15%."; //Indisponível no momento.
         //Cardápio - Pizzaria
         refeicao = new Refeicao(55, "Pizza de 4 queijos com pepperoni", "Pequeno", 15d);
         cardapioPizzas.add(refeicao);

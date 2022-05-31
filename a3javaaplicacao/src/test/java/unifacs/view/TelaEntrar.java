@@ -15,13 +15,13 @@ import unifacs.controller.TelasIniciaisController;
  * @author YellowRed
  */
 public class TelaEntrar extends javax.swing.JFrame {
-    private  TelaInicial viewInicial;
+    private  Principal viewInicial;
     private  TelaUsuario viewUsuario;
     private  TelaEsqueceuSenha viewEsqueceuSenha;
     private  TelasIniciaisController controller;
 
     /**
-     * Creates new form TelaInicial
+     * Creates new form Principal
      */
     public TelaEntrar() {
         this.viewInicial = viewInicial;

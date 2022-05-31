@@ -5,6 +5,7 @@
 package unifacs.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import unifacs.controller.helpers.TelaPagamentoHelper;
@@ -19,7 +20,7 @@ import unifacs.view.JITelaPagamento;
 import unifacs.view.JITelaPedidoRestaurante1;
 import unifacs.view.JITelaPedidoRestaurante2;
 import unifacs.view.JITelaVisualizarConta;
-import unifacs.view.TelaInicial;
+import unifacs.view.Principal;
 import unifacs.view.TelaUsuario;
 import unifacs.model.Refeicao;
 import unifacs.model.RestauranteBr;
@@ -42,7 +43,7 @@ public class TelaUsuarioController implements ICliente {
     private static JIFazerPedido viewFazerPedido;
     private static TelaUsuario viewUsuario;
 
-    private static TelaInicial viewInicial;
+    private static Principal viewInicial;
     private static boolean pagamentoDefinido;
     private static boolean botaoFazerPedidoSelecionado;
     private static boolean botaoVisualizarContaSelecionado;
@@ -106,7 +107,7 @@ public class TelaUsuarioController implements ICliente {
 
     }
 
-    //Configuração do pedido - Métodos FAÇA A SAÍDA PARA AS ABAS!!
+    //Configuração do pedido - Métodos 
     //Terá ligação co as funções da classe Pedido.
     //Exibição de texto - Métodos
     public static void preencherMinhaConta(Cliente clienteModelo) {
@@ -130,19 +131,26 @@ public class TelaUsuarioController implements ICliente {
 
     //Exibição dos pedidos na tela do usuário.
     public static void preencherListaPedidos() {
-        if (clienteUsuario.getPedidosCliente().isEmpty()) {           
+        if (clienteUsuario.getPedidosCliente().isEmpty()) {
+
+        } else { //Percorrer os pedidos já criados, mesmo que seja apenas um.
             
-        } else{
-        String idPedido = pedidoInicial.getIdPedido();
-        String dataPedido = pedidoInicial.getDataPedido();
-        helperUsuario.exibirListaPedidos(idPedido, dataPedido);
+            for (int i = 0; i < clienteUsuario.getPedidosCliente().size(); i++) {
+                Pedido pedido = clienteUsuario.getPedidosCliente().get(i);
+                String idPedido = pedido.getIdPedido();
+                String dataPedido = pedido.getDataPedido();
+                helperUsuario.exibirListaPedidos(idPedido, dataPedido);
+                
+            }
+            
+            
         }
-       
+
     }
 
-    public static void mostrarDescricaoPedidos() {
-        if(clienteUsuario.getPedidosCliente().isEmpty()) {
-            
+    public static void mostrarDescricaoPedidos() { //Exceção relacionada ao tamanho do array criada.
+        if (clienteUsuario.getPedidosCliente().isEmpty()) {//Mostra uma breve descrição dos pedidos feitos.
+
         } else if (botaoFazerPedidoSelecionado == false && botaoVisualizarContaSelecionado == false) {
             Integer indiceP = viewUsuario.getjComboBoxPedidos().getSelectedIndex();
             Pedido pedidoLocal = clienteUsuario.getPedidosCliente().get(indiceP);
@@ -151,9 +159,9 @@ public class TelaUsuarioController implements ICliente {
             String id = pedidoLocal.getIdPedido();
             String qtdProdutos = String.valueOf(pedidoLocal.getNumProdutos());
             String tipoPagamento = pedidoLocal.getTipoPagamento();
-            String precoTotal = String.valueOf(pedidoLocal.getPrecoTotalPedido());            
+            String precoTotal = String.valueOf(pedidoLocal.getPrecoTotalPedido());
 
-            JOptionPane.showMessageDialog(viewUsuario, "Pedido -"+id+"-      Quantidade de produtos: "+qtdProdutos+" - Estado: "+estado+".     - Restaurante:"+restaurante+" -     Tipo de pagamento:"+tipoPagamento+" -    Preço total:"+precoTotal+".", "Informações do Pedido -"+id+".", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(viewUsuario, "Pedido - " + id + "  -      Quantidade de produtos: " + qtdProdutos + " - Estado: " + estado + ".     -   Restaurante:" + restaurante + "   -     Tipo de pagamento: " + tipoPagamento + " -    Preço total: " + precoTotal + ".", "Informações do Pedido - " + id + ".", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
             JOptionPane.showMessageDialog(viewUsuario, "Você não pode visualizar seus pedidos enquanto outra tela de dados está aberta!", "Erro!", JOptionPane.WARNING_MESSAGE);

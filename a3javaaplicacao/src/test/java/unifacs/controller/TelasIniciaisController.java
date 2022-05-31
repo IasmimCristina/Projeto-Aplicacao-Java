@@ -15,7 +15,7 @@ import unifacs.model.Pedido;
 import unifacs.view.TelaCadastrar;
 import unifacs.view.TelaEntrar;
 import unifacs.view.TelaEsqueceuSenha;
-import unifacs.view.TelaInicial;
+import unifacs.view.Principal;
 import unifacs.view.TelaUsuario;
 
 /**
@@ -25,7 +25,7 @@ import unifacs.view.TelaUsuario;
 public class TelasIniciaisController implements ITelaInicial {
 
     private static Cliente clienteUsuario;
-    private static TelaInicial viewInicial;
+    private static Principal viewInicial;
     private static TelaCadastrar viewCadastrar;
     private static TelaEntrar viewEntrar;
     private static TelaEsqueceuSenha viewEsqueceuSenha;
@@ -36,7 +36,7 @@ public class TelasIniciaisController implements ITelaInicial {
     private static ArrayList<Cliente> listaClientesCadastrados;
 
     //Construtor para tela inicial
-    public TelasIniciaisController(TelaInicial viewInicial, TelaCadastrar viewCadastrar, TelaEntrar viewEntrar, TelaEsqueceuSenha viewEsqueceuSenha, TelaUsuario viewUsuario) {
+    public TelasIniciaisController(Principal viewInicial, TelaCadastrar viewCadastrar, TelaEntrar viewEntrar, TelaEsqueceuSenha viewEsqueceuSenha, TelaUsuario viewUsuario) {
         this.viewInicial = viewInicial;
         this.viewCadastrar = viewCadastrar;
         this.viewEntrar = viewEntrar;

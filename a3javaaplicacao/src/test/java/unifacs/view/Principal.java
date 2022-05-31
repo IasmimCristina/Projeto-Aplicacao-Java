@@ -18,7 +18,7 @@ import unifacs.model.RestauranteInternacional;
  *
  * @author YellowRed
  */
-public class TelaInicial extends javax.swing.JFrame {
+public class Principal extends javax.swing.JFrame {
 
     private final TelaCadastrar viewCadastrar;
     private final TelaEntrar viewEntrar;
@@ -41,7 +41,7 @@ public class TelaInicial extends javax.swing.JFrame {
     /**
      * Creates new form TelaInicial
      */
-    public TelaInicial() {
+    public Principal() {
         initComponents();
         this.viewCadastrar = new TelaCadastrar();
         this.viewEntrar = new TelaEntrar();
@@ -95,6 +95,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.setTipoPagamento("Durante a entrega.");
         pedido.definirPrecoEQtd(produtosEscolhidos);
         pedidosCliente.add(pedido);
+        
         //Outro pedido.
         pedido = new Pedido(usuario, "Sabor Estrangeiro");
         refeicao = saborEstrangeiro.getCardapioPizzas().get(1);
@@ -117,13 +118,16 @@ public class TelaInicial extends javax.swing.JFrame {
         produtosEscolhidos.add(refeicao);
         refeicao = saborEstrangeiro.getCardapioBebidas().get(3);
         produtosEscolhidos.add(refeicao);
+                
+
 
         //Configuração do pedido
         pedido.setProdutosEscolhidos(produtosEscolhidos);
         pedido.setEstado("Entregue.");
         pedido.setTipoPagamento("Por Pix.");
         pedido.definirPrecoEQtd(produtosEscolhidos);
-        pedidosCliente.add(pedido); 
+        pedidosCliente.add(pedido);
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -186,6 +190,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.setTipoPagamento("Por Pix.");
         pedido.definirPrecoEQtd(produtosEscolhidos);
         pedidosCliente.add(pedido);  
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -283,7 +288,9 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.setEstado("Entregue.");
         pedido.setTipoPagamento("Cartão de crédito.");
         pedido.definirPrecoEQtd(produtosEscolhidos);
-        pedidosCliente.add(pedido); 
+        pedidosCliente.add(pedido);
+        
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -337,6 +344,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.setTipoPagamento("Por Pix.");
         pedido.definirPrecoEQtd(produtosEscolhidos);
         pedidosCliente.add(pedido); 
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -364,6 +372,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.definirPrecoEQtd(produtosEscolhidos);
         //Adição do pedido ao cliente:        
         pedidosCliente.add(pedido);   
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -392,6 +401,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.definirPrecoEQtd(produtosEscolhidos);
         //Adição do pedido ao cliente:        
         pedidosCliente.add(pedido); 
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -460,6 +470,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.setTipoPagamento("Por Pix.");
         pedido.definirPrecoEQtd(produtosEscolhidos);
         pedidosCliente.add(pedido); 
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -489,6 +500,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.definirPrecoEQtd(produtosEscolhidos);
         //Adição do pedido ao cliente:        
         pedidosCliente.add(pedido);
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -517,6 +529,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.definirPrecoEQtd(produtosEscolhidos);
         //Adição do pedido ao cliente:        
         pedidosCliente.add(pedido);   
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -545,6 +558,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.definirPrecoEQtd(produtosEscolhidos);
         //Adição do pedido ao cliente:        
         pedidosCliente.add(pedido);
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
 
         
@@ -585,6 +599,7 @@ public class TelaInicial extends javax.swing.JFrame {
         pedido.definirPrecoEQtd(produtosEscolhidos);
         //Adição do pedido ao cliente:        
         pedidosCliente.add(pedido);
+        usuario.setNumPedidos(pedidosCliente.size());
         listaClientesCadastrados.add(usuario);
         
         
@@ -788,20 +803,21 @@ public class TelaInicial extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInicial().setVisible(true);
+                new Principal().setVisible(true);
             }
         });
     }

@@ -8,7 +8,7 @@ package unifacs.model;
  *
  * @author YellowRed
  */
-public class Refeicao {
+public class Refeicao {//Usado como base para os produtos do restaurante.
     
     //Terá dois construtores.
     private int qtdSelecionada;

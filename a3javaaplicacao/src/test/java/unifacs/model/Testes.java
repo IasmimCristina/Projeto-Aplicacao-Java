@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-import unifacs.view.TelaInicial;
+import unifacs.view.Principal;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,7 +15,7 @@ import unifacs.view.TelaInicial;
  *
  * @author YellowRed
  */
-public class Principal {
+public class Testes {
 
     public static void main(String[] args) {
 
@@ -40,7 +40,7 @@ public class Principal {
         System.out.println(idPedido01);
         System.out.println(idPedido02);
         
-        TelaInicial viewInicial = new TelaInicial();
+        Principal viewInicial = new Principal();
         
         ArrayList<Cliente> exemplo =  viewInicial.getListaClientesCadastrados();
         System.out.println("Exemplo!");

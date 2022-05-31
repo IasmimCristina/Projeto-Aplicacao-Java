@@ -17,16 +17,14 @@ public class Cliente implements ICliente {
     private String senha;
     private String cpf;
     private String numTelefone;
-    //Não obrigatórios:    
     
-    //Local de entrega? No pagamento.
     private LinkedList<Pedido> pedidosCliente;
     private Integer numPedidos;
 
     public Cliente() {
     }
 
-    //Sem a LinkedList.
+  
    
     
     //Construtor
@@ -63,7 +61,7 @@ public class Cliente implements ICliente {
     
     
     
-    
+    //Getters e setters:
 
     public String getNomeCompleto() {
         return nomeCompleto;
